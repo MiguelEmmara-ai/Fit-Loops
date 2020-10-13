@@ -1,13 +1,13 @@
 # Fit-Loops
 Fit Loops is all in one Fitness Applications to help and keep tracks diet and exercise.
 
-#Key Features
+# Key Features
 
-#How To Use
+# How To Use
 
-#UML
+# UML
 
-#Screenshots
+# Screenshots
 
-#License
+# License
 Copyright 2020. Code released under the MIT license.
