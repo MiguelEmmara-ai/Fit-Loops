@@ -24,7 +24,7 @@ public class Trainings extends ReadingUser implements TrainingPlans {
 
     @Override
     public boolean choices() throws IndexOutOfBoundsException, InputMismatchException {
-        boolean success = true;
+        boolean success;
 
         System.out.println("\nTraining Plans Day Plan");
         System.out.println("\t1. 3 Days");
@@ -52,7 +52,7 @@ public class Trainings extends ReadingUser implements TrainingPlans {
             case 4 -> success = false;
             default -> throw new IndexOutOfBoundsException();
         }
-        return false;
+        return success;
     }
 
     @Override

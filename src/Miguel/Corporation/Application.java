@@ -31,7 +31,7 @@ public class Application {
                     userName = scanner.nextLine();
 
                     System.out.print("\tPassword: ");
-                    String passWord = scanner.nextLine();
+                    passWord = scanner.nextLine();
 
                     Login loginPage = new Login(userName,passWord);
                     if (loginPage.verifyLogin(userName,passWord,filepath)) {
@@ -131,8 +131,8 @@ public class Application {
                 bulking.getInput();
             }
             case 4 ->{
-                System.out.println("\nTraining Plans Chosen!");
                 Trainings trainingPlans = new Trainings();
+                System.out.println("\nTraining Plans, Where You Can Get Recommendations For Your Training Plans Program");
                 trainingPlans.getInput();
             }
             case 5 ->{
