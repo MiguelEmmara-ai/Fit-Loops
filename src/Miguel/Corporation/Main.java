@@ -40,6 +40,8 @@ public class Main extends Application {
             } catch (InputMismatchException | IllegalArgumentException e) {
                 System.err.println("Invalid menu input. Please try again.");
                 scanner.next();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

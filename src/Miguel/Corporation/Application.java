@@ -91,7 +91,7 @@ public class Application {
         return false;
     }
 
-    public boolean menu() throws IndexOutOfBoundsException, InputMismatchException {
+    public boolean menu() throws IndexOutOfBoundsException, InputMismatchException, IOException {
         boolean success = true;
 
         System.out.println("\nChoose Your Options");
@@ -137,6 +137,9 @@ public class Application {
             }
             case 5 ->{
                 System.out.println("\nCreate Weekly Diet Log");
+                System.out.println("\nTo Continue, Please Enter How Many Weeks Would You Like To Logs: ");
+                WeeklyDietLogs weeklyDietLogs = new WeeklyDietLogs(userName);
+                weeklyDietLogs.getInput();
             }
             case 6 ->{
                 System.out.println("\nCreate Weekly Exercise Log");
