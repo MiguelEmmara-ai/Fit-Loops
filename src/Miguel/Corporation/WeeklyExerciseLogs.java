@@ -98,6 +98,6 @@ public class WeeklyExerciseLogs {
         outputWriter.flush();
         outputWriter.close();
 
-        System.out.println("\nYour " + getWeeks() + " Exercise Log Has Been Saved as \"Weekly Diet Log - " + getUserName() + ".txt\"");
+        System.out.println("Your " + getWeeks() + " Exercise Log Has Been Saved as \"Weekly Diet Log - " + getUserName() + ".txt\"");
     }
 }
