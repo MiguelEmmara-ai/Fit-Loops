@@ -104,10 +104,11 @@ public class Application {
         System.out.println("\t6. Create Weekly Exercise Log");
         System.out.println("\t7. Read My Weekly Diet Log (if there is any)");
         System.out.println("\t8. Read My Weekly Exercise Log (if there is any)");
-        System.out.println("\t9. Print Menus");
-        System.out.println("\t10. Quit Applications");
+        System.out.println("\t9. Read My Current Macros Log");
+        System.out.println("\t10. Print Menus");
+        System.out.println("\t11. Quit Applications");
 
-        System.out.print("\nEnter your choice (9 - To Print Menus): ");
+        System.out.print("\nEnter your choice (10 - To Print Menus): ");
         int userInput = scanner.nextInt();
         scanner.nextLine();
 
@@ -154,10 +155,13 @@ public class Application {
                 System.out.println("\nRead My Weekly Exercise Log (if there is any)");
             }
             case 9 ->{
+                System.out.println("\nRead My Current Macros Log");
+            }
+            case 10 ->{
                 menu();
                 success = false;
             }
-            case 10 ->{
+            case 11 ->{
                 System.out.println("\nSee ya!");
                 success = false;
             }
