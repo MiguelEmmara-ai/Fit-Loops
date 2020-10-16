@@ -4,12 +4,24 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * <h1>Application Class</h1>
+ * This Class is the starting point to implement any other class
+ *
+ * @author  Miguel Emmara - 1802146
+ * @version 1.0
+ * @since   10/10/2020
+ */
 public class Application {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String filepath = "members.txt";
     private static String userName;
     private static String passWord;
 
+    /**
+     * This method is used to greet the user.
+     * @return boolean, This method will return false
+     */
     public boolean welcomePage() throws IndexOutOfBoundsException, InputMismatchException, IOException {
         boolean success = true;
 
@@ -91,6 +103,10 @@ public class Application {
         return false;
     }
 
+    /**
+     * This method is the main page (main menu).
+     * @return boolean, This method will return boolean success
+     */
     public boolean menu() throws IndexOutOfBoundsException, InputMismatchException, IOException {
         boolean success = true;
 
