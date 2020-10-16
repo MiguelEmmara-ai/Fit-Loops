@@ -136,10 +136,22 @@ public class Application {
                 trainingPlans.getInput();
             }
             case 5 ->{
+                System.out.println("\nCreate Weekly Diet Log");
+            }
+            case 6 ->{
+                System.out.println("\nCreate Weekly Exercise Log");
+            }
+            case 7 ->{
+                System.out.println("\nRead My Weekly Diet Log (if there is any)");
+            }
+            case 8 ->{
+                System.out.println("\nRead My Weekly Exercise Log (if there is any)");
+            }
+            case 9 ->{
                 menu();
                 success = false;
             }
-            case 6 ->{
+            case 10 ->{
                 System.out.println("\nSee ya!");
                 success = false;
             }
