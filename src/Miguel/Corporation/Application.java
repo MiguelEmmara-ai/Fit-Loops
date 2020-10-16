@@ -13,7 +13,7 @@ import java.util.Scanner;
  * @since   10/10/2020
  */
 public class Application {
-    private static final Scanner scanner = new Scanner(System.in);
+   /* private static final Scanner scanner = new Scanner(System.in);*/
     private static final String filepath = "members.txt";
     private static String userName;
     private static String passWord;
@@ -22,7 +22,7 @@ public class Application {
      * This method is used to greet the user.
      * @return boolean, This method will return false
      */
-    public boolean welcomePage() throws IndexOutOfBoundsException, InputMismatchException, IOException {
+    public boolean welcomePage(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException, IOException {
         boolean success = true;
 
         do {
@@ -33,17 +33,17 @@ public class Application {
 
             System.out.print("\nPlease Choose Your Options: ");
             int userInput = scanner.nextInt();
-            scanner.nextLine();
+            //scanner.nextLine();
 
             if (userInput == 1) {
                 boolean login = true;
                 System.out.println("\nTo Login, Please Enter Your Credentials");
                 do {
                     System.out.print("\n\tUsername: ");
-                    userName = scanner.nextLine();
+                    userName = scanner.next();
 
                     System.out.print("\tPassword: ");
-                    passWord = scanner.nextLine();
+                    passWord = scanner.next();
 
                     Login loginPage = new Login(userName,passWord);
                     if (loginPage.verifyLogin(userName,passWord,filepath)) {
@@ -107,7 +107,7 @@ public class Application {
      * This method is the main page (main menu).
      * @return boolean, This method will return boolean success
      */
-    public boolean menu() throws IndexOutOfBoundsException, InputMismatchException, IOException {
+    public boolean menu(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException, IOException {
         boolean success = true;
 
         System.out.println("\nChoose Your Options");
@@ -174,7 +174,7 @@ public class Application {
                 System.out.println("\nRead My Current Macros Log");
             }
             case 10 ->{
-                menu();
+                menu(scanner);
                 success = false;
             }
             case 11 ->{
