@@ -137,12 +137,15 @@ public class Application {
             }
             case 5 ->{
                 System.out.println("\nCreate Weekly Diet Log");
-                System.out.println("\nTo Continue, Please Enter How Many Weeks Would You Like To Logs: ");
+                System.out.println("\nTo Continue, Please Enter How Many Weeks Would You Like To Logs");
                 WeeklyDietLogs weeklyDietLogs = new WeeklyDietLogs(userName);
                 weeklyDietLogs.getInput();
             }
             case 6 ->{
                 System.out.println("\nCreate Weekly Exercise Log");
+                System.out.println("\nTo Continue, Please Enter The Following Information");
+                WeeklyExerciseLogs weeklyExerciseLogs = new WeeklyExerciseLogs(userName);
+                weeklyExerciseLogs.getInput();
             }
             case 7 ->{
                 System.out.println("\nRead My Weekly Diet Log (if there is any)");
