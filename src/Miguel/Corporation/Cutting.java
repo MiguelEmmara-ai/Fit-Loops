@@ -10,7 +10,6 @@ public class Cutting extends MacrosDatabases {
     private float deficitCalories;
     private float activityMultiplier;
     private boolean saveMacros;
-    //private final Scanner scanner = new Scanner(System.in);
 
     public Cutting(String userName, String password) {
         super(userName, password);
@@ -25,7 +24,7 @@ public class Cutting extends MacrosDatabases {
                 + " Grams of Carbs";
 
         // attach a file to FileWriter
-        FileWriter fw = new FileWriter("Lean Cutting Macros - " + getUserName() + ".txt");
+        FileWriter fw = new FileWriter(getUserName() + " - Lean Cutting Macros.txt");
 
         // read character wise from string and write
         // into FileWriter
@@ -83,7 +82,7 @@ public class Cutting extends MacrosDatabases {
                         setSaveMacros(true);
                         if (isSaveMacros()) {
                             saveMacrosMethod();
-                            System.out.println("Macros Saves as \"Lean Cutting Macros - " + getUserName() + ".txt\"");
+                            System.out.println("Macros Saves as " + getUserName() + " - Lean Cutting Macros.txt");
                         }
                         success = true;
                     }

@@ -25,7 +25,7 @@ public class Bulking extends MacrosDatabases {
                 + " Grams of Carbs";
 
         // attach a file to FileWriter
-        FileWriter fw = new FileWriter("Lean Bulking Macros - " + getUserName() + ".txt");
+        FileWriter fw = new FileWriter(getUserName() + " - Lean Bulking Macros.txt");
 
         // read character wise from string and write
         // into FileWriter
@@ -92,7 +92,7 @@ public class Bulking extends MacrosDatabases {
                         setSaveMacros(true);
                         if (isSaveMacros()) {
                             saveMacrosMethod();
-                            System.out.println("Macros Saves as \"Lean Bulking Macros - " + getUserName() + ".txt\"");
+                            System.out.println("Macros Saves as " + getUserName() + " - Lean Bulking Macros.txt");
                         }
                         success = true;
                     }

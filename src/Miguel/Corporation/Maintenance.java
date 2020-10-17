@@ -24,7 +24,7 @@ public class Maintenance extends MacrosDatabases {
                 + " Grams of Carbs";
 
         // attach a file to FileWriter
-        FileWriter fw = new FileWriter("Maintenance Macros - " + getUserName() + ".txt");
+        FileWriter fw = new FileWriter(getUserName() + " - Maintenance Macros.txt");
 
         // read character wise from string and write
         // into FileWriter
@@ -74,7 +74,7 @@ public class Maintenance extends MacrosDatabases {
                         setSaveMacros(true);
                         if (isSaveMacros()) {
                             saveMacrosMethod();
-                            System.out.println("Macros Saves as \"Maintenance Macros - " + getUserName() + ".txt\"");
+                            System.out.println("Macros Saves as " + getUserName() + " - Maintenance Macros.txt");
                         }
                         success = true;
                     }

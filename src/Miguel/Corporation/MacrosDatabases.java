@@ -1,5 +1,7 @@
 package Miguel.Corporation;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -12,7 +14,6 @@ public class MacrosDatabases extends Login implements Calculators {
     private boolean kg;
     private boolean pound;
     private boolean saveMacros = false;
-    //private final Scanner scanner = new Scanner(System.in);
 
     public MacrosDatabases(String userName, String password) {
         super(userName, password);

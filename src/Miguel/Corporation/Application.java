@@ -1,5 +1,7 @@
 package Miguel.Corporation;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -173,6 +175,8 @@ public class Application {
             }
             case 9 ->{
                 System.out.println("\nRead My Current Macros Log");
+                System.out.println("\nTo Continue, Please Choose Your File You Want To Read");
+                readMacrosLog();
             }
             case 10 ->{
                 System.out.println("\nDiet Regime Algorithm");
@@ -189,5 +193,24 @@ public class Application {
                     throw new IndexOutOfBoundsException();
         }
         return success;
+    }
+
+    public void readMacrosLog() {
+        File directoryPath = new File(System.getProperty("user.dir"));
+        //List text files only
+        System.out.println("\n----------- File Names Available -----------");
+        File[] files=directoryPath.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith("Macros.txt");
+            }
+        });
+
+        for (File file : files) {
+            System.out.println(file.getName());
+        }
+
+        // Choose file
+        // Display that file
     }
 }
