@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Login {
     private String userName;
     private String password;
-    private Scanner scanner = new Scanner(System.in);
 
     public Login(String userName, String password) {
         setUserName(userName);
@@ -36,7 +35,7 @@ public class Login {
         String tempPassword = "";
 
         try {
-            scanner = new Scanner(new File(filepath));
+            Scanner scanner = new Scanner(new File(filepath));
             scanner.useDelimiter("[,\n]");
 
             while (scanner.hasNext() && !found) {

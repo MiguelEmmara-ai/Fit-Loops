@@ -13,7 +13,6 @@ import java.util.Scanner;
  * @since   10/10/2020
  */
 public class Application {
-   /* private static final Scanner scanner = new Scanner(System.in);*/
     private static final String filepath = "members.txt";
     private static String userName;
     private static String passWord;
@@ -33,7 +32,7 @@ public class Application {
 
             System.out.print("\nPlease Choose Your Options: ");
             int userInput = scanner.nextInt();
-            //scanner.nextLine();
+            scanner.nextLine();
 
             if (userInput == 1) {
                 boolean login = true;
@@ -44,6 +43,7 @@ public class Application {
 
                     System.out.print("\tPassword: ");
                     passWord = scanner.next();
+                    scanner.nextLine();
 
                     Login loginPage = new Login(userName,passWord);
                     if (loginPage.verifyLogin(userName,passWord,filepath)) {
@@ -107,7 +107,7 @@ public class Application {
      * This method is the main page (main menu).
      * @return boolean, This method will return boolean success
      */
-    public boolean menu(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException, IOException {
+    public boolean mainMenu(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException, IOException {
         boolean success = true;
 
         System.out.println("\nChoose Your Options");
@@ -121,10 +121,11 @@ public class Application {
         System.out.println("\t7. Read My Weekly Diet Log (if there is any)");
         System.out.println("\t8. Read My Weekly Exercise Log (if there is any)");
         System.out.println("\t9. Read My Current Macros Log");
-        System.out.println("\t10. Print Menus");
-        System.out.println("\t11. Quit Applications");
+        System.out.println("\t10. Diet Regime Algorithm");
+        System.out.println("\t11. Print Menus");
+        System.out.println("\t12. Quit Applications");
 
-        System.out.print("\nEnter your choice (10 - To Print Menus): ");
+        System.out.print("\nEnter your choice (11 - To Print Menus): ");
         int userInput = scanner.nextInt();
         scanner.nextLine();
 
@@ -174,10 +175,13 @@ public class Application {
                 System.out.println("\nRead My Current Macros Log");
             }
             case 10 ->{
-                menu(scanner);
-                success = false;
+                System.out.println("\nDiet Regime Algorithm");
             }
             case 11 ->{
+                mainMenu(scanner);
+                success = false;
+            }
+            case 12 ->{
                 System.out.println("\nSee ya!");
                 success = false;
             }

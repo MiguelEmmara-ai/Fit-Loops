@@ -34,11 +34,11 @@ public class Main extends Application {
                 success = application.welcomePage(scanner);
                 success = false;
             } catch (IndexOutOfBoundsException e) {
-                System.err.println("1. Invalid menu input. Please try again.");
-
-            } catch (InputMismatchException e) {
-                System.err.println("2. Invalid menu input. Please try again.");
-                /*System.err.flush();*/
+                System.err.println("Invalid menu input. Please try again.");
+                System.err.flush();
+            } catch (InputMismatchException | IllegalArgumentException e) {
+                System.err.println("Invalid menu input. Please try again.");
+                System.err.flush();
                 scanner.nextLine();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -48,13 +48,14 @@ public class Main extends Application {
        boolean quit2 = true;
         while (quit2) {
             try {
-                quit2 = application.menu(scanner);
+                quit2 = application.mainMenu(scanner);
             } catch (IndexOutOfBoundsException e) {
                 System.err.println("Invalid menu input. Please try again.");
-
+                System.err.flush();
             } catch (InputMismatchException | IllegalArgumentException e) {
                 System.err.println("Invalid menu input. Please try again.");
-                scanner.next();
+                System.err.flush();
+                scanner.nextLine();
             } catch (IOException e) {
                 e.printStackTrace();
             }
