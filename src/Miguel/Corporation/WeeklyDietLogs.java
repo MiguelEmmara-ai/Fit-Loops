@@ -29,7 +29,8 @@ public class WeeklyDietLogs {
         return userName;
     }
 
-    public void getInput() throws IOException {
+    // Fix This
+    public void getInput(Scanner scanner) throws IOException {
         int counter = 1;
 
         System.out.print("\nWeeks: ");
@@ -72,7 +73,7 @@ public class WeeklyDietLogs {
         for (int i = 0; i < getWeeks(); i++) {
             rows = Collections.singletonList(new LinkedList<String>(Arrays.asList(weeks,rows.get(i).toString().replace("[", "").replace("]", ""))));
 
-            FileWriter csvWriter = new FileWriter("new.csv");
+            FileWriter csvWriter = new FileWriter("Weekly Diet Log - " + getUserName() + ".csv");
             csvWriter.append("Weeks");
             csvWriter.append(",");
             csvWriter.append("Calories");
@@ -204,7 +205,7 @@ public class WeeklyDietLogs {
         outputWriter.flush();
         outputWriter.close();*/
 
-        System.out.println("\nYour " + getWeeks() + " Weeks Diet Log Has Been Saved as \"Weekly Diet Log - " + getUserName() + ".txt\"");
+        System.out.println("\nYour " + getWeeks() + " Weeks Diet Log Has Been Saved as \"Weekly Diet Log - " + getUserName() + ".csv\"");
     }
 
     public String convertFloatToString(float floatValue) {

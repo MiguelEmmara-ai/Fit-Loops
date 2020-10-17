@@ -134,36 +134,36 @@ public class Application {
                 Maintenance maintenance = new Maintenance(userName,passWord);
                 System.out.println("\nMaintenance Macro Calculator");
                 System.out.println("\nThis Will Calculate Your Maintenance Macros\n");
-                maintenance.getInput();
+                maintenance.getInput(scanner);
             }
             case 2 ->{
                 Cutting cutting = new Cutting(userName,passWord);
                 System.out.println("\nLean Cutting Macro Calculator");
                 System.out.println("\nThis Will Calculate Your Lean Cutting Macros\n");
-                cutting.getInput();
+                cutting.getInput(scanner);
             }
             case 3 ->{
                 Bulking bulking = new Bulking(userName,passWord);
                 System.out.println("\nLean Bulking Macro Calculator");
                 System.out.println("\nThis Will Calculate Your Lean Bulking Macros\n");
-                bulking.getInput();
+                bulking.getInput(scanner);
             }
             case 4 ->{
                 Trainings trainingPlans = new Trainings();
                 System.out.println("\nTraining Plans, Where You Can Get Recommendations For Your Training Plans Program");
-                trainingPlans.getInput();
+                trainingPlans.getInput(scanner);
             }
             case 5 ->{
                 System.out.println("\nCreate Weekly Diet Log");
                 System.out.println("\nTo Continue, Please Enter How Many Weeks Would You Like To Logs");
                 WeeklyDietLogs weeklyDietLogs = new WeeklyDietLogs(userName);
-                weeklyDietLogs.getInput();
+                weeklyDietLogs.getInput(scanner);
             }
             case 6 ->{
                 System.out.println("\nCreate Weekly Exercise Log");
                 System.out.println("\nTo Continue, Please Enter The Following Information");
                 WeeklyExerciseLogs weeklyExerciseLogs = new WeeklyExerciseLogs(userName);
-                weeklyExerciseLogs.getInput();
+                weeklyExerciseLogs.getInput(scanner);
             }
             case 7 ->{
                 System.out.println("\nRead My Weekly Diet Log (if there is any)");

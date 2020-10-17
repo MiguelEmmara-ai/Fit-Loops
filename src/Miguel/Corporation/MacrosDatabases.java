@@ -12,7 +12,7 @@ public class MacrosDatabases extends Login implements Calculators {
     private boolean kg;
     private boolean pound;
     private boolean saveMacros = false;
-    private final Scanner scanner = new Scanner(System.in);
+    //private final Scanner scanner = new Scanner(System.in);
 
     public MacrosDatabases(String userName, String password) {
         super(userName, password);
@@ -81,7 +81,7 @@ public class MacrosDatabases extends Login implements Calculators {
     public void setActivityMultiplier(float activityMultiplier) {
     }
 
-    public void activityMultiplier() {
+    public void activityMultiplier(Scanner scanner) {
         System.out.println("\nChoose your Activity Multiplier that suit you");
         System.out.println("\nFor sedentary plus 3-6 days of weight lifting: 1.3 - 1.6\n" +
                 "For lightly active plus 3-6 days of weight lifting: 1.5 - 1.8\n" +
@@ -101,7 +101,7 @@ public class MacrosDatabases extends Login implements Calculators {
         this.saveMacros = saveMacros;
     }
 
-    public void getInput() throws IndexOutOfBoundsException, InputMismatchException {
+    public void getInput(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException {
         boolean success = false;
         int choice;
 
@@ -122,7 +122,7 @@ public class MacrosDatabases extends Login implements Calculators {
                         this.setWeight(scanner.nextFloat());
                         scanner.nextLine();
 
-                        activityMultiplier();
+                        activityMultiplier(scanner);
                         success = true;
                     }
                     case 2 -> {
@@ -132,7 +132,7 @@ public class MacrosDatabases extends Login implements Calculators {
                         this.setWeight(scanner.nextFloat());
                         scanner.nextLine();
 
-                        activityMultiplier();
+                        activityMultiplier(scanner);
                         success = true;
                     }
                     default -> throw new IndexOutOfBoundsException();

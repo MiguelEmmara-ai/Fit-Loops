@@ -4,26 +4,27 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Trainings extends ReadingUser implements TrainingPlans {
-    private final Scanner scanner = new Scanner(System.in);
+    //private final Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void getInput() throws IndexOutOfBoundsException, InputMismatchException {
+    public void getInput(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException {
         boolean quit = true;
         while (quit) {
             try {
-                quit = choices();
+                quit = choices(scanner);
             } catch (IndexOutOfBoundsException e) {
                 System.err.println("Invalid menu input. Please try again.\n");
 
-            } catch (InputMismatchException e) {
-                System.err.println("Invalid menu input. Please try again.\n");
-                scanner.next();
+            } catch (InputMismatchException | IllegalArgumentException e) {
+                System.err.println("Invalid menu input. Please try again.");
+                System.err.flush();
+                scanner.nextLine();
             }
         }
     }
 
     @Override
-    public boolean choices() throws IndexOutOfBoundsException, InputMismatchException {
+    public boolean choices(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException {
         boolean success;
 
         System.out.println("\nTraining Plans Day Plan");

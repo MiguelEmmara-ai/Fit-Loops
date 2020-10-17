@@ -9,7 +9,7 @@ public class Maintenance extends MacrosDatabases {
     private float calories;
     private float activityMultiplier;
     private boolean saveMacros;
-    private final Scanner scanner = new Scanner(System.in);
+    //private final Scanner scanner = new Scanner(System.in);
 
     public Maintenance(String userName, String password) {
         super(userName, password);
@@ -55,8 +55,8 @@ public class Maintenance extends MacrosDatabases {
     }
 
     @Override
-    public void getInput() {
-        super.getInput();
+    public void getInput(Scanner scanner) {
+        super.getInput(scanner);
         System.out.println("\n*Note that this will be your Maintenance Macros");
 
         boolean success = false;
@@ -98,8 +98,8 @@ public class Maintenance extends MacrosDatabases {
     }
 
     @Override
-    public void activityMultiplier() {
-        super.activityMultiplier();
+    public void activityMultiplier(Scanner scanner) {
+        super.activityMultiplier(scanner);
     }
 
     public float getActivityMultiplier() {

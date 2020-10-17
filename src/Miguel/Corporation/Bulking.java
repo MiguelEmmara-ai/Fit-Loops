@@ -73,8 +73,8 @@ public class Bulking extends MacrosDatabases {
     }
 
     @Override
-    public void getInput() {
-        super.getInput();
+    public void getInput(Scanner scanner) {
+        super.getInput(scanner);
         System.out.println("\n*Note that this will be your Lean Bulking Macros");
 
         boolean success = false;
@@ -116,8 +116,8 @@ public class Bulking extends MacrosDatabases {
     }
 
     @Override
-    public void activityMultiplier() {
-        super.activityMultiplier();
+    public void activityMultiplier(Scanner scanner) {
+        super.activityMultiplier(scanner);
     }
 
     @Override

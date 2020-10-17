@@ -12,7 +12,7 @@ public class WeeklyExerciseLogs {
     private int numberExercises;
     private final String userName;
     private final ArrayList<String> exerciseList;
-    private static final Scanner scanner = new Scanner(System.in);
+    //private static final Scanner scanner = new Scanner(System.in);
 
     public WeeklyExerciseLogs(String userName) {
         this.userName = userName;
@@ -47,7 +47,7 @@ public class WeeklyExerciseLogs {
         return userName;
     }
 
-    public void getInput() throws IOException {
+    public void getInput(Scanner scanner) throws IOException {
         System.out.print("\nHow Many Weeks Would You Like To Create A Log (eg. 10): ");
         setWeeks(scanner.nextInt());
         scanner.nextLine();
