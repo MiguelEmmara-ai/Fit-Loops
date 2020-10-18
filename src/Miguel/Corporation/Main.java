@@ -22,7 +22,6 @@ public class Main extends Application {
      * @return Nothing.
      */
     public static void main(String[] args) {
-        System.err.println();
         Application application = new Application();
 
         System.out.println("Welcome to Fit Loops!");

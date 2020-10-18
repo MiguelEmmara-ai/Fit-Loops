@@ -182,6 +182,8 @@ public class Application {
             }
             case 10 ->{
                 System.out.println("\nDiet Regime Algorithm");
+                System.out.println("This Is The Regime Algorithm For You Depending On Your Result Week By Week");
+                dietRegimeAlgorithm(scanner);
             }
             case 11 ->{
                 mainMenu(scanner);
@@ -243,6 +245,132 @@ public class Application {
         } else {
             System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
                     "You Can Create one Within The Main Menu Options 1,2,3");
+        }
+    }
+
+    public static void dietRegimeAlgorithm(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException {
+        int i = 0;
+        int weeks = 0;
+        int counter = 1;
+        boolean success1 = false;
+        while (!success1) {
+            try {
+                System.out.println("\nInitiating The Shred");
+                System.out.print("\nHow Many Weeks You Have Been Dieting (eg. 10): ");
+                weeks = scanner.nextInt();
+                success1 = true;
+                while (i < weeks) {
+                    System.out.println("\nWeek " + (i + 1));
+
+                    boolean success2 = false;
+                    while (!success2) {
+                        try {
+                            System.out.println("Did You Stay Within 5 Gram Of Your Macros Every Day, Throughout The Week?");
+                            System.out.println("\t1. Yes");
+                            System.out.println("\t2. No");
+                            System.out.print("\nAnswer: ");
+                            int answer = scanner.nextInt();
+                            scanner.nextLine();
+
+                            switch (answer) {
+                                case 1 -> {
+                                    boolean success3 = false;
+                                    while (!success3) {
+                                        try {
+                                            System.out.println("\nWhat Happened To Your Weight Compared To Your Starting Weigh in?");
+                                            System.out.println("\t1. Maintained / Increased");
+                                            System.out.println("\t2. Decreased");
+                                            System.out.print("\nAnswer: ");
+                                            int answerForWeight = scanner.nextInt();
+                                            scanner.nextLine();
+
+                                            switch (answerForWeight) {
+                                                case 1 -> {
+                                                    System.out.println("Maintained / Increased\n");
+                                                    System.out.println("Drop Carbs by 25 Grams (100 Calories) and Increase Cardio by One 300 Calories Session.\n");
+                                                    //counter++;
+
+                                                    success3 = true;
+                                                }
+                                                case 2 -> {
+                                                    System.out.println("Decreased\n");
+                                                    boolean success4 = false;
+                                                    while (!success4) {
+                                                        try {
+                                                            System.out.println("More Than 1% Of Your Total Body Weight?");
+                                                            System.out.println("\t1. More");
+                                                            System.out.println("\t2. Less / About");
+                                                            System.out.print("\nAnswer: ");
+                                                            int bw = scanner.nextInt();
+                                                            scanner.nextLine();
+
+                                                            switch (bw) {
+                                                                case 1 -> {
+                                                                    System.out.println("Increase Carbs By 25 Grams (100 Calories)\n");
+                                                                    success4 = true;
+                                                                }
+                                                                case 2 -> {
+                                                                    System.out.println("Good Job! Keep Macros and Cardio The Same and Re-evaluate The Following Week!.");
+                                                                    success4 = true;
+                                                                }
+                                                                default -> throw new IndexOutOfBoundsException();
+                                                            }
+
+                                                        } catch (IndexOutOfBoundsException e) {
+                                                            System.out.println("Invalid menu input. Please try again.\n");
+                                                            System.out.flush();
+                                                        } catch (InputMismatchException | IllegalArgumentException e) {
+                                                            System.out.println("Invalid menu input. Please try again.\n");
+                                                            System.out.flush();
+                                                            scanner.nextLine();
+                                                        }
+                                                    }
+                                                    success3 = true;
+                                                }
+                                                default ->
+                                                        throw new IndexOutOfBoundsException();
+                                            }
+
+                                        } catch (IndexOutOfBoundsException e) {
+                                            System.out.println("Invalid menu input. Please try again.\n");
+                                            System.out.flush();
+                                        } catch (InputMismatchException | IllegalArgumentException e) {
+                                            System.out.println("Invalid menu input. Please try again.\n");
+                                            System.out.flush();
+                                            scanner.nextLine();
+                                        }
+                                    }
+                                    success2 = true;
+                                }
+                                case 2 -> {
+                                    System.out.println("No\n");
+                                    success2 = true;
+                                }
+                                default ->
+                                        throw new IndexOutOfBoundsException();
+                            }
+                            success1 = true;
+
+                        } catch (IndexOutOfBoundsException e) {
+                            System.out.println("Invalid menu input. Please try again.\n");
+                            System.out.flush();
+                        } catch (InputMismatchException | IllegalArgumentException e) {
+                            System.out.println("Invalid menu input. Please try again.\n");
+                            System.out.flush();
+                            scanner.nextLine();
+                        }
+                    }
+                    i++;
+                }
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Invalid menu input. Please try again.\n");
+                System.out.flush();
+
+            } catch (InputMismatchException | IllegalArgumentException e) {
+                System.out.println("Invalid menu input. Please try again.\n");
+                System.out.flush();
+                scanner.nextLine();
+            }
         }
     }
 }
