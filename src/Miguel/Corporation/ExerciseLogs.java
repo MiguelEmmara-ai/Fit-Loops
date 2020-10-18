@@ -125,7 +125,7 @@ public class ExerciseLogs {
                 try {
                     System.out.print("\nPlease Enter Your Options: ");
                     i = scanner.nextInt();
-                    if (i >= arrayLists.size() && i <= arrayLists.size()) {
+                    if (i <= arrayLists.size()) {
                         System.out.println();
                         try {
                             String pathToCsv = arrayLists.get(i - 1);

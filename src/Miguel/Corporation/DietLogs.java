@@ -120,7 +120,7 @@ public class DietLogs {
                 try {
                     System.out.print("\nPlease Enter Your Options: ");
                     i = scanner.nextInt();
-                    if (i >= arrayLists.size() && i <= arrayLists.size()) {
+                    if (i <= arrayLists.size()) {
                         System.out.println();
                         try {
                             System.out.println("Calories          Carbs (Grams)   Fats (Grams)   Protein (Grams)     Average Body Weight");
