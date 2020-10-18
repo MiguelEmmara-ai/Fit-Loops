@@ -170,8 +170,8 @@ public class Application {
         System.out.println("\t4. Training Plans");
         System.out.println("\t5. Create Diet Log");
         System.out.println("\t6. Create Exercise Log");
-        System.out.println("\t7. Read My Weekly Diet Log (if there is any)");
-        System.out.println("\t8. Read My Weekly Exercise Log (if there is any)");
+        System.out.println("\t7. Read Diet Log (if there is any)");
+        System.out.println("\t8. Read Exercise Log (if there is any)");
         System.out.println("\t9. Read My Current Macros Log");
         System.out.println("\t10. Diet Regime Algorithm");
         System.out.println("\t11. Print Menus");
@@ -206,22 +206,24 @@ public class Application {
                 trainingPlans.getInput(scanner);
             }
             case 5 ->{
-                System.out.println("\nCreate Weekly Diet Log");
+                System.out.println("\nCreate Daily Diet Log");
                 System.out.println("\nTo Continue, Please Enter The Following Information");
                 WeeklyDietLogs weeklyDietLogs = new WeeklyDietLogs(userName);
                 weeklyDietLogs.getInput(scanner);
             }
             case 6 ->{
-                System.out.println("\nCreate Weekly Exercise Log");
+                System.out.println("\nCreate Daly Exercise Log");
                 System.out.println("\nTo Continue, Please Enter The Following Information");
                 WeeklyExerciseLogs weeklyExerciseLogs = new WeeklyExerciseLogs(userName);
                 weeklyExerciseLogs.getInput(scanner);
             }
             case 7 ->{
-                System.out.println("\nRead My Weekly Diet Log (if there is any)");
+                System.out.println("\nRead My Diet Log (if there is any)");
+                WeeklyDietLogs weeklyDietLogs = new WeeklyDietLogs(userName);
+                weeklyDietLogs.readDietLog(scanner);
             }
             case 8 ->{
-                System.out.println("\nRead My Weekly Exercise Log (if there is any)");
+                System.out.println("\nRead My Exercise Log (if there is any)");
             }
             case 9 ->{
                 System.out.println("\nRead My Current Macros Log");

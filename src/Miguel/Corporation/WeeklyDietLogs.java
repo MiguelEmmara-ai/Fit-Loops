@@ -251,4 +251,65 @@ public class WeeklyDietLogs {
 
         System.out.println("\nYour Daily Diet Log Has Been Saved as \"" + fileName + "\"");
     }
+
+    public void readDietLog(Scanner scanner) throws IOException {
+        File directoryPath = new File(System.getProperty("user.dir"));
+        // List text files only
+        System.out.println("\n----------- File Names Available -----------");
+        File[] files=directoryPath.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith("Diet Log.csv");
+            }
+        });
+
+        int counter = 1;
+        if (files != null && files.length > 0) {
+            ArrayList<String> arrayLists = new ArrayList<>(counter);
+            for (File file : files) {
+                System.out.println(counter + ". " + file.getName());
+                counter++;
+                arrayLists.add(file.getName());
+            }
+            System.out.println("\nArray List");
+            int i;
+            for (i = 0; i < arrayLists.size(); i++)
+                System.out.print((i+1) + ". " + arrayLists.get(i) + "\n");
+
+            System.out.print("\nPlease Enter Your Options: ");
+            i = scanner.nextInt();
+            if (i <= arrayLists.size()) {
+                System.out.println(i);
+                System.out.print(arrayLists.get(i-1) + "\n");
+                try {
+                    System.out.println("Calories          Carbs (Grams)   Fats (Grams)   Protein (Grams)     Average Body Weight");
+                    String pathToCsv = arrayLists.get(i-1);
+                    BufferedReader csvReader = new BufferedReader(new FileReader(pathToCsv));
+                    String row;
+                    while ((row = csvReader.readLine()) != null) {
+                        String[] data = row.split(",");
+                        String joined = String.join("", data);
+                        System.out.println(Arrays
+                                .toString(data)
+                                .replace("[","")
+                                .replace("]","")
+                                .replace(",","             ")
+                                .replace("Calories","")
+                                .replace("Carbs (Grams)", "")
+                                .replace("Fats (Grams)", "")
+                                .replace("Protein (Grams)", "")
+                                .replace("Average Body Weight",""));
+                    }
+                    csvReader.close();
+                }catch (FileNotFoundException e) {
+                    System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
+                            "You Can Create one Within The Main Menu Options 5");
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
+                    "You Can Create one Within The Main Menu Options 5");
+        }
+    }
 }
