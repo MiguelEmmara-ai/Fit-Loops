@@ -84,14 +84,27 @@ public class MacrosDatabases extends Login implements Calculators {
 
     public void activityMultiplier(Scanner scanner) {
         System.out.println("\nChoose your Activity Multiplier that suit you");
-        System.out.println("\nFor sedentary plus 3-6 days of weight lifting: 1.3 - 1.6\n" +
-                "For lightly active plus 3-6 days of weight lifting: 1.5 - 1.8\n" +
-                "For active plus 3-6 days of weight lifting: 1.7 - 2.0\n" +
-                "For very active plus 3-6 days of weight lifting: 1.9 - 2.2");
-        System.out.print("\nActivity Multiplier (e.g 1.5): ");
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("\nFor sedentary plus 3-6 days of weight lifting: 1.3 - 1.6\n" +
+                        "For lightly active plus 3-6 days of weight lifting: 1.5 - 1.8\n" +
+                        "For active plus 3-6 days of weight lifting: 1.7 - 2.0\n" +
+                        "For very active plus 3-6 days of weight lifting: 1.9 - 2.2");
+                System.out.print("\nActivity Multiplier (e.g 1.5): ");
 
-        this.setActivityMultiplier(scanner.nextFloat());
-        scanner.nextLine();
+                this.setActivityMultiplier(scanner.nextFloat());
+                scanner.nextLine();
+                success = true;
+            } catch (IndexOutOfBoundsException e) {
+                System.err.println("Invalid menu input. Please try again.\n");
+
+            } catch (InputMismatchException | IllegalArgumentException e) {
+                System.err.println("Invalid menu input. Please try again.");
+                System.err.flush();
+                scanner.nextLine();
+            }
+        }
     }
 
     public boolean isSaveMacros() {
@@ -142,9 +155,10 @@ public class MacrosDatabases extends Login implements Calculators {
             } catch (IndexOutOfBoundsException e) {
                 System.err.println("Invalid menu input. Please try again.\n");
 
-            } catch (InputMismatchException e) {
-                System.err.println("Invalid menu input. Please try again.\n");
-                scanner.next();
+            } catch (InputMismatchException | IllegalArgumentException e) {
+                System.err.println("Invalid menu input. Please try again.");
+                System.err.flush();
+                scanner.nextLine();
             }
         }
 

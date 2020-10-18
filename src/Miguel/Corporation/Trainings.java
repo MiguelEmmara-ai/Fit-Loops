@@ -4,7 +4,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Trainings extends ReadingUser implements TrainingPlans {
-    //private final Scanner scanner = new Scanner(System.in);
 
     @Override
     public void getInput(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException {

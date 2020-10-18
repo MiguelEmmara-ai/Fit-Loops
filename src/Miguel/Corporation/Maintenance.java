@@ -120,9 +120,10 @@ public class Maintenance extends MacrosDatabases {
             } catch (IndexOutOfBoundsException e) {
                 System.err.println("Invalid menu input. Please try again.\n");
 
-            } catch (InputMismatchException e) {
-                System.err.println("Invalid menu input. Please try again.\n");
-                scanner.next();
+            } catch (InputMismatchException | IllegalArgumentException e) {
+                System.err.println("Invalid menu input. Please try again.");
+                System.err.flush();
+                scanner.nextLine();
             } catch (IOException e) {
                 e.printStackTrace();
             }

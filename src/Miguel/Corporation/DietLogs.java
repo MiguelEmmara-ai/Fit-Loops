@@ -4,7 +4,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
-public class WeeklyDietLogs {
+public class DietLogs {
     private int weeks;
     private final String userName;
     private final ArrayList<String> macrosDatabasesArrayList;
@@ -12,7 +12,7 @@ public class WeeklyDietLogs {
     private List<String> list = new ArrayList<>();
     private LocalDate now = LocalDate.now();
 
-    public WeeklyDietLogs(String userName) {
+    public DietLogs(String userName) {
         this.userName = userName;
         this.macrosDatabasesArrayList = new ArrayList<>(weeks);
     }
@@ -30,7 +30,7 @@ public class WeeklyDietLogs {
     }
 
     public void getInput(Scanner scanner) throws IOException {
-        System.out.print("Calories: ");
+        System.out.print("\nCalories: ");
         String calories;
         list.add(calories = scanner.nextLine());
 
@@ -255,7 +255,7 @@ public class WeeklyDietLogs {
         File directoryPath = new File(System.getProperty("user.dir"));
         // List text files only
         System.out.println("\n----------- File Names Available -----------");
-        File[] files=directoryPath.listFiles(new FilenameFilter() {
+        File[] files = directoryPath.listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
                 return name.endsWith("Diet Log.csv");
@@ -270,45 +270,53 @@ public class WeeklyDietLogs {
                 counter++;
                 arrayLists.add(file.getName());
             }
-            System.out.println("\nArray List");
             int i;
-            for (i = 0; i < arrayLists.size(); i++)
-                System.out.print((i+1) + ". " + arrayLists.get(i) + "\n");
-
-            System.out.print("\nPlease Enter Your Options: ");
-            i = scanner.nextInt();
-            if (i <= arrayLists.size()) {
-                System.out.println(i);
-                System.out.print(arrayLists.get(i-1) + "\n");
+            boolean success = false;
+            while (!success) {
                 try {
-                    System.out.println("Calories          Carbs (Grams)   Fats (Grams)   Protein (Grams)     Average Body Weight");
-                    String pathToCsv = arrayLists.get(i-1);
-                    BufferedReader csvReader = new BufferedReader(new FileReader(pathToCsv));
-                    String row;
-                    while ((row = csvReader.readLine()) != null) {
-                        String[] data = row.split(",");
-                        String joined = String.join("", data);
-                        System.out.println(Arrays
-                                .toString(data)
-                                .replace("[","")
-                                .replace("]","")
-                                .replace(",","             ")
-                                .replace("Calories","")
-                                .replace("Carbs (Grams)", "")
-                                .replace("Fats (Grams)", "")
-                                .replace("Protein (Grams)", "")
-                                .replace("Average Body Weight",""));
+                    System.out.print("\nPlease Enter Your Options: ");
+                    i = scanner.nextInt();
+                    if (i >= arrayLists.size() && i <= arrayLists.size()) {
+                        System.out.println();
+                        try {
+                            System.out.println("Calories          Carbs (Grams)   Fats (Grams)   Protein (Grams)     Average Body Weight");
+                            String pathToCsv = arrayLists.get(i - 1);
+                            BufferedReader csvReader = new BufferedReader(new FileReader(pathToCsv));
+                            String row;
+                            while ((row = csvReader.readLine()) != null) {
+                                String[] data = row.split(",");
+                                String joined = String.join("", data);
+                                System.out.println(Arrays
+                                        .toString(data)
+                                        .replace("[", "")
+                                        .replace("]", "")
+                                        .replace(",", "             ")
+                                        .replace("Calories", "")
+                                        .replace("Carbs (Grams)", "")
+                                        .replace("Fats (Grams)", "")
+                                        .replace("Protein (Grams)", "")
+                                        .replace("Average Body Weight", ""));
+                            }
+                            csvReader.close();
+                            success = true;
+                        } catch (FileNotFoundException e) {
+                            System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
+                                    "You Can Create one Within The Main Menu Options 5");
+                            e.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Error, The System Only Read " + arrayLists.size() + " Files");
+                        scanner.nextLine();
                     }
-                    csvReader.close();
-                }catch (FileNotFoundException e) {
-                    System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
-                            "You Can Create one Within The Main Menu Options 5");
-                    e.printStackTrace();
+                } catch (IndexOutOfBoundsException e) {
+                    System.err.println("Invalid menu input. Please try again.\n");
+
+                } catch (InputMismatchException | IllegalArgumentException e) {
+                    System.err.println("Invalid menu input. Please try again.");
+                    System.err.flush();
+                    scanner.nextLine();
                 }
             }
-        } else {
-            System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
-                    "You Can Create one Within The Main Menu Options 5");
         }
     }
 }
