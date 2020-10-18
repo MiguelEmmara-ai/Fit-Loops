@@ -15,6 +15,9 @@ public class Register {
     private String userName;
     private String passWords;
 
+    public Register() {
+    }
+
     public Register(String firstName, String lastName, LocalDate dateOfBirth, float weight, float height,
                     String userName, String passWords) {
         setFirstName(firstName);
@@ -104,7 +107,7 @@ public class Register {
                 + getUserName() + "\nPassword: " + getPassWords();
 
         // attach a file to FileWriter
-        FileWriter fw = new FileWriter(getUserName() + "AccountInformation.txt");
+        FileWriter fw = new FileWriter(getUserName() + " - Account Information .txt");
 
         // read character wise from string and write
         // into FileWriter
@@ -125,4 +128,5 @@ public class Register {
             System.out.println("exception occurred" + e);
         }
     }
+
 }

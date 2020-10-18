@@ -1,5 +1,6 @@
 package Miguel.Corporation;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -10,28 +11,57 @@ public class Cutting extends MacrosDatabases {
     private float deficitCalories;
     private float activityMultiplier;
     private boolean saveMacros;
+    DataBaseUser[] dataBaseUsers = new DataBaseUser[0];
 
     public Cutting(String userName, String password) {
         super(userName, password);
     }
 
-    public void saveMacrosMethod() throws IOException{
-        // Accept a string
-        String str = "\t\t\t### Lean Cutting Macros ###" + "\nName: " + getUserName() + "\nHeight: " + "CM" + "\nAge: "
-                + "\nWeight: " + getWeight() + " KG" + "\n\nCalories: " + String.format("%.2f", getDeficitCalories())
-                + "\nProtein: " + String.format("%.2f", getProteins()) + " Grams of Protein" + "\nFats: "
-                + String.format("%.2f", getFats()) + " Grams of Fats" + "\nCarbs: " + String.format("%.2f", getCarbs())
-                + " Grams of Carbs";
+    public void saveMacrosMethod(Scanner scanner) throws IOException{
+        scanner = new Scanner(new File(getUserName() + " - Account Information.txt"));
+        scanner.useDelimiter("[-\n]");
 
-        // attach a file to FileWriter
-        FileWriter fw = new FileWriter(getUserName() + " - Lean Cutting Macros.txt");
+        while (scanner.hasNext()) {
+            String firstName = scanner.nextLine();
+            String lastName = scanner.nextLine();
+            String dateOfBirth = scanner.nextLine();
+            String weight = scanner.nextLine();
+            String height = scanner.nextLine();
+            String userName = scanner.nextLine();
+            String passWords = scanner.nextLine();
 
-        // read character wise from string and write
-        // into FileWriter
-        for (int i = 0; i < str.length(); i++)
-            fw.write(str.charAt(i));
-        //close the file
-        fw.close();
+            // Accept a string
+            String str = "\t\t\t### Lean Cutting Macros ###" + "\nName: " + getUserName() + "\n"  + height + "\n"
+                    + dateOfBirth + "\nWeight: " + getWeight() + " KG" + "\n\nCalories: " + String.format("%.2f", getDeficitCalories())
+                    + "\nProtein: " + String.format("%.2f", getProteins()) + " Grams of Protein" + "\nFats: "
+                    + String.format("%.2f", getFats()) + " Grams of Fats" + "\nCarbs: " + String.format("%.2f", getCarbs())
+                    + " Grams of Carbs";
+
+            // attach a file to FileWriter
+            FileWriter fw = new FileWriter(getUserName() + " - Lean Cutting Macros.txt");
+
+            // read character wise from string and write
+            // into FileWriter
+            for (int i = 0; i < str.length(); i++)
+                fw.write(str.charAt(i));
+            //close the file
+            fw.close();
+
+            DataBaseUser newUser = new DataBaseUser(firstName, lastName, dateOfBirth, weight, height, userName, passWords);
+            dataBaseUsers = addUserData(dataBaseUsers, newUser);
+        }
+
+        for (DataBaseUser product : dataBaseUsers) {
+            System.out.println(product);
+        }
+    }
+
+    private static DataBaseUser[] addUserData(DataBaseUser[] products, DataBaseUser productToAdd) {
+        DataBaseUser[] newUserData = new DataBaseUser[products.length + 1];
+        System.arraycopy(products, 0, newUserData, 0, products.length);
+        newUserData[newUserData.length - 1] = productToAdd;
+
+        return newUserData;
     }
 
     @Override
@@ -81,7 +111,7 @@ public class Cutting extends MacrosDatabases {
                     case 1 -> {
                         setSaveMacros(true);
                         if (isSaveMacros()) {
-                            saveMacrosMethod();
+                            saveMacrosMethod(scanner);
                             System.out.println("Macros Saves as " + getUserName() + " - Lean Cutting Macros.txt");
                         }
                         success = true;
