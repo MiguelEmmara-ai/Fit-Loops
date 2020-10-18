@@ -4,22 +4,44 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * <h1>DieLogs Class</h1>
+ * This Class integrates for 2 functionality, to read and create a daily logs
+ *
+ * @author  Miguel Emmara - 1802146
+ * @version 1.0
+ * @since   10/10/2020
+ */
 public class DietLogs {
     private final String userName;
     private List<List<String>> rows;
     private List<String> list;
     private LocalDate now;
 
+    /**
+     * Default Constructor
+     * @param userName : Get userName From User.
+     * @author  Miguel Emmara - 1802146
+     */
     public DietLogs(String userName) {
         this.userName = userName;
         this.list = new ArrayList<>();
         this.now = LocalDate.now();
     }
 
+    // Getter method for Object's instance data.
+    //------------------------------------------------------------------
     public String getUserName() {
         return userName;
     }
+    //------------------------------------------------------------------
 
+    /**
+     * This will get user information and will save it a csv file
+     * @param scanner : Scanner to grab user input.
+     * @return none
+     * @author  Miguel Emmara - 1802146
+     */
     public void getInput(Scanner scanner) throws IOException {
         System.out.print("\nCalories: ");
         String calories;
@@ -66,6 +88,12 @@ public class DietLogs {
         System.out.println("\nYour Daily Diet Log Has Been Saved as \"" + fileName + "\"");
     }
 
+    /**
+     * This will display File Names Available (csv) for user to read it in the console
+     * @param scanner : Scanner to grab user input.
+     * @return none
+     * @author  Miguel Emmara - 1802146
+     */
     public void readDietLog(Scanner scanner) throws IOException {
         File directoryPath = new File(System.getProperty("user.dir"));
 
@@ -133,6 +161,9 @@ public class DietLogs {
                     scanner.nextLine();
                 }
             }
+        } else {
+            System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
+                    "You Can Create one Within The Main Menu Options 5");
         }
     }
 }

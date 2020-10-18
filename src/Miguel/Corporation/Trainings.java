@@ -3,8 +3,18 @@ package Miguel.Corporation;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * <h1>Trainings Class</h1>
+ * This Class used to display Trainings Regimes to users.
+ *
+ * @author  Miguel Emmara - 1802146
+ * @version 1.0
+ * @since   10/10/2020
+ */
 public class Trainings extends ReadingUser implements TrainingPlans {
 
+    // Overridden methods from the Abstract class.
+    //############################################
     @Override
     public void getInput(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException {
         boolean quit = true;
@@ -21,7 +31,7 @@ public class Trainings extends ReadingUser implements TrainingPlans {
             }
         }
     }
-
+    //############################################
     @Override
     public boolean choices(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException {
         boolean success;
@@ -54,7 +64,7 @@ public class Trainings extends ReadingUser implements TrainingPlans {
         }
         return success;
     }
-
+    //############################################
     @Override
     public void threeDays() {
         System.out.println("3 Day Training Plan\n");
@@ -84,7 +94,7 @@ public class Trainings extends ReadingUser implements TrainingPlans {
 
         abProgram();
     }
-
+    //############################################
     @Override
     public void fiveDays() {
         System.out.println("5 Days Training Plan\n");
@@ -147,7 +157,7 @@ public class Trainings extends ReadingUser implements TrainingPlans {
 
         abProgram();
     }
-
+    //############################################
     @Override
     public void sixDays() {
         System.out.println("6 Days Training Plan\n");
@@ -217,7 +227,7 @@ public class Trainings extends ReadingUser implements TrainingPlans {
 
         abProgram();
     }
-
+    //############################################
     @Override
     public void abProgram() {
         System.out.println("\t\t\tAB Program");
@@ -228,4 +238,5 @@ public class Trainings extends ReadingUser implements TrainingPlans {
         System.out.println("\n*Ab work can be done on your days off or after you complete your\n" +
                 "workouts.");
     }
+    //############################################
 }

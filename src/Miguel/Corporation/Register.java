@@ -6,6 +6,14 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * <h1>Register Class</h1>
+ * Store information that needs for user to register
+ *
+ * @author  Miguel Emmara - 1802146
+ * @version 1.0
+ * @since   10/10/2020
+ */
 public class Register {
     private String firstName;
     private String lastName;
@@ -16,6 +24,10 @@ public class Register {
     private String passWords;
     private GoalType goalType;
 
+    /**
+     * 8-Parameters Constructor
+     * @author  Miguel Emmara - 1802146
+     */
     public Register(String firstName, String lastName, LocalDate dateOfBirth, float weight, float height,
                     GoalType goalType, String userName, String passWords) {
         setFirstName(firstName);
@@ -28,6 +40,10 @@ public class Register {
         setPassWords(passWords);
     }
 
+    /**
+     * 8-Parameters Constructor
+     * @author  Miguel Emmara - 1802146
+     */
     public Register(String firstName, String lastName, String dateOfBirth, float weight, float height,
                     GoalType goalType, String userName, String passWords) {
         setFirstName(firstName);
@@ -40,14 +56,16 @@ public class Register {
         setPassWords(passWords);
     }
 
+    // Getter and setter methods for Object's instance data.
+    //------------------------------------------------------------------
     public String getFirstName() {
         return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstName = (firstName.trim().isEmpty()? "UNKNOWN":firstName);
     }
-
+    //------------------------------------------------------------------
     public String getLastName() {
         return lastName;
     }
@@ -55,7 +73,7 @@ public class Register {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+    //------------------------------------------------------------------
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
@@ -63,7 +81,7 @@ public class Register {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
+    //------------------------------------------------------------------
     public float getWeight() {
         return weight;
     }
@@ -71,7 +89,7 @@ public class Register {
     public void setWeight(float weight) {
         this.weight = weight;
     }
-
+    //------------------------------------------------------------------
     public float getHeight() {
         return height;
     }
@@ -79,27 +97,27 @@ public class Register {
     public void setHeight(float height) {
         this.height = height;
     }
-
+    //------------------------------------------------------------------
     public String getUserName() {
         return userName;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.userName = (userName.trim().isEmpty()? "UNKNOWN":userName);
     }
-
+    //------------------------------------------------------------------
     public String getPassWords() {
         return passWords;
     }
 
     public void setPassWords(String passWords) {
-        this.passWords = passWords;
+        this.passWords = (passWords.trim().isEmpty()? "UNKNOWN":passWords);
     }
-
+    //------------------------------------------------------------------
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = LocalDate.parse(dateOfBirth, DateTimeFormatter.ofPattern("dd/MM/yyy"));
     }
-
+    //------------------------------------------------------------------
     public GoalType getGoalType() {
         return goalType;
     }
@@ -107,7 +125,13 @@ public class Register {
     public void setGoalType(GoalType goalType) {
         this.goalType = goalType;
     }
-
+    //------------------------------------------------------------------
+    /**
+     * This method is A Polymorphism Method From MacroDatabases Class
+     * It will get user information and have an options to save it a txt file
+     * @return none
+     * @author  Miguel Emmara - 1802146
+     */
     public void createUserAccountInformation() throws IOException {
         // Accept a string
         String str = "First Name: " + getFirstName() + "\nLast Name: " + getLastName() + "\nDate Of Birth: "
@@ -125,11 +149,19 @@ public class Register {
         fw.close();
     }
 
-    public void addNewMembers(String fileName, String str) {
+    /**
+     * This method is A Polymorphism Method From MacroDatabases Class
+     * It will get user information and have an options to save it a txt file
+     * @param filePath : get filePath from user.
+     * @param string : get string Information from user.
+     * @return none
+     * @author  Miguel Emmara - 1802146
+     */
+    public void addNewMembers(String filePath, String string) {
         try {
             // Open given file in append mode.
-            BufferedWriter out = new BufferedWriter(new FileWriter(fileName, true));
-            out.write(str);
+            BufferedWriter out = new BufferedWriter(new FileWriter(filePath, true));
+            out.write(string);
             out.close();
         }
         catch (IOException e) {

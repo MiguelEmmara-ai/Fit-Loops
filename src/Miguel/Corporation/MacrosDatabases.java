@@ -7,6 +7,15 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * <h1>MacrosDatabases Class</h1>
+ * This Class stored all information macro nutrients related.
+ * extends Login implements Calculators
+ *
+ * @author  Miguel Emmara - 1802146
+ * @version 1.0
+ * @since   10/10/2020
+ */
 public class MacrosDatabases extends Login implements Calculators {
     private float weight;
     private float proteins;
@@ -18,10 +27,18 @@ public class MacrosDatabases extends Login implements Calculators {
     private float activityMultiplier;
     private boolean saveMacros = false;
 
+    /**
+     * 2-Parameters Constructor
+     * @param userName : Get userName From User.
+     * @param password : Get PassWord From user.
+     * @author  Miguel Emmara - 1802146
+     */
     public MacrosDatabases(String userName, String password) {
         super(userName, password);
     }
 
+    // Getter and setter methods for Object's instance data.
+    //------------------------------------------------------------------
     public float getWeight() {
         return weight;
     }
@@ -29,7 +46,7 @@ public class MacrosDatabases extends Login implements Calculators {
     public void setWeight(float weight) {
         this.weight = weight;
     }
-
+    //------------------------------------------------------------------
     public float getProteins() {
         return proteins;
     }
@@ -37,7 +54,7 @@ public class MacrosDatabases extends Login implements Calculators {
     public void setProteins(float proteins) {
         this.proteins = proteins;
     }
-
+    //------------------------------------------------------------------
     public float getFats() {
         return fats;
     }
@@ -45,7 +62,7 @@ public class MacrosDatabases extends Login implements Calculators {
     public void setFats(float fats) {
         this.fats = fats;
     }
-
+    //------------------------------------------------------------------
     public float getCarbs() {
         return carbs;
     }
@@ -53,7 +70,7 @@ public class MacrosDatabases extends Login implements Calculators {
     public void setCarbs(float carbs) {
         this.carbs = carbs;
     }
-
+    //------------------------------------------------------------------
     public boolean isKg() {
         return kg;
     }
@@ -61,7 +78,7 @@ public class MacrosDatabases extends Login implements Calculators {
     public void setKg(boolean kg) {
         this.kg = kg;
     }
-
+    //------------------------------------------------------------------
     public boolean isPound() {
         return pound;
     }
@@ -69,7 +86,7 @@ public class MacrosDatabases extends Login implements Calculators {
     public void setPound(boolean pound) {
         this.pound = pound;
     }
-
+    //------------------------------------------------------------------
     public float getCalories() {
         return calories;
     }
@@ -77,7 +94,7 @@ public class MacrosDatabases extends Login implements Calculators {
     public void setCalories(float calories) {
         this.calories = calories;
     }
-
+    //------------------------------------------------------------------
     public float getActivityMultiplier() {
         return activityMultiplier;
     }
@@ -85,7 +102,7 @@ public class MacrosDatabases extends Login implements Calculators {
     public void setActivityMultiplier(float activityMultiplier) {
         this.activityMultiplier = activityMultiplier;
     }
-
+    //------------------------------------------------------------------
     public void activityMultiplier(Scanner scanner) {
         System.out.println("\nChoose your Activity Multiplier that suit you");
         boolean success = false;
@@ -110,7 +127,7 @@ public class MacrosDatabases extends Login implements Calculators {
             }
         }
     }
-
+    //------------------------------------------------------------------
     public boolean isSaveMacros() {
         return saveMacros;
     }
@@ -118,7 +135,14 @@ public class MacrosDatabases extends Login implements Calculators {
     public void setSaveMacros(boolean saveMacros) {
         this.saveMacros = saveMacros;
     }
+    //------------------------------------------------------------------
 
+    /**
+     * This method use to ask the user and gives all the following information.
+     * @param scanner : Scanner to grab user input.
+     * @return none
+     * @author  Miguel Emmara - 1802146
+     */
     public void getInput(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException {
         boolean success = false;
         int choice;
@@ -171,48 +195,27 @@ public class MacrosDatabases extends Login implements Calculators {
         calculateProtein();
         calculateFat();
         calculateCarbs();
-
-        /*while (isSaveMacros()) {
-            try {
-                System.out.println("Would You Like To Save The Macros");
-                System.out.println("\t 1. Yes");
-                System.out.println("\t 2. No");
-                System.out.print("\nAnswer: ");
-                int answer = scanner.nextInt();
-                scanner.nextLine();
-
-                switch (answer) {
-                    case 1 -> {
-                        System.out.println("Macros Saves as \"Maintenance Macros - Maintenance Macros - Miguel.txt\"");
-                        setSaveMacros(true);
-                    }
-                    case 2 -> {
-                        setSaveMacros(false);
-                    }
-                    default -> throw new IndexOutOfBoundsException();
-                }
-
-            } catch (IndexOutOfBoundsException e) {
-                System.err.println("Invalid menu input. Please try again.\n");
-
-            } catch (InputMismatchException e) {
-                System.err.println("Invalid menu input. Please try again.\n");
-                scanner.next();
-            }
-        }*/
     }
 
-    public static void readMacrosLog(Scanner scanner){
+    /**
+     * This will display File Names Available (csv) for user to read it in the console
+     * @param scanner : Scanner to grab user input.
+     * @return none
+     * @author  Miguel Emmara - 1802146
+     */
+    public static void readMacrosLog(Scanner scanner) {
         File directoryPath = new File(System.getProperty("user.dir"));
         // List text files only
         System.out.println("\n----------- File Names Available -----------");
         File[] files = directoryPath.listFiles(new FilenameFilter() {
             @Override
+            // List all files end with 'Macros.txt'
             public boolean accept(File dir, String name) {
                 return name.endsWith("Macros.txt");
             }
         });
 
+        // Get all files names and saves it arraylists
         int counter = 1;
         if (files != null && files.length > 0) {
             ArrayList<String> arrayLists = new ArrayList<>(counter);
@@ -221,54 +224,76 @@ public class MacrosDatabases extends Login implements Calculators {
                 counter++;
                 arrayLists.add(file.getName());
             }
-            //System.out.println("\nArray List");
-            int i;
-            /*for (i = 0; i < arrayLists.size(); i++)
-                System.out.print((i+1) + ". " + arrayLists.get(i) + "\n");*/
 
-            System.out.print("\nPlease Enter Your Options: ");
-            i = scanner.nextInt();
-            if (i <= arrayLists.size()) {
-                //System.out.println(i);
-                //System.out.print(arrayLists.get(i-1) + "\n");
-                System.out.println();
+            // Allow user to choose the files numbers, and get retrieve the file name from arraylists
+            int i;
+            boolean success = false;
+            while (!success) {
                 try {
-                    File myObj = new File(arrayLists.get(i - 1));
-                    Scanner myReader = new Scanner(myObj);
-                    while (myReader.hasNextLine()) {
-                        String data = myReader.nextLine();
-                        System.out.println(data);
+                    System.out.print("\nPlease Enter Your Options: ");
+                    i = scanner.nextInt();
+                    if (i >= arrayLists.size() && i <= arrayLists.size()) {
+                        System.out.println();
+                        try {
+                            File myObj = new File(arrayLists.get(i - 1));
+                            Scanner myReader = new Scanner(myObj);
+                            while (myReader.hasNextLine()) {
+                                String data = myReader.nextLine();
+                                System.out.println(data);
+                            }
+                            myReader.close();
+                            success = true;
+                        } catch (FileNotFoundException e) {
+                            System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
+                                    "You Can Create one Within The Main Menu Options 6");
+                            e.printStackTrace();
+                        } catch (IndexOutOfBoundsException e) {
+                            System.err.println("Invalid menu input. Please try again.\n");
+
+                        } catch (InputMismatchException | IllegalArgumentException e) {
+                            System.err.println("Invalid menu input. Please try again.");
+                            System.err.flush();
+                            scanner.nextLine();
+                        }
+                    } else {
+                        System.out.println("Error, The System Only Read " + arrayLists.size() + " Files");
+                        scanner.nextLine();
                     }
-                    myReader.close();
-                } catch (FileNotFoundException e) {
-                    System.out.println("An error occurred.");
-                    e.printStackTrace();
+                } catch (IndexOutOfBoundsException e) {
+                    System.err.println("Invalid menu input. Please try again.\n");
+
+                } catch (InputMismatchException | IllegalArgumentException e) {
+                    System.err.println("Invalid menu input. Please try again.");
+                    System.err.flush();
+                    scanner.nextLine();
                 }
             }
-
         } else {
             System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
-                    "You Can Create one Within The Main Menu Options 1,2,3");
+                    "You Can Create one Within The Main Menu Options 6");
         }
     }
 
+    // Overridden methods from the Abstract class.
+    //############################################
     @Override
     public void calculateCalories() {
 
     }
-
+    //############################################
     @Override
     public void calculateProtein() {
 
     }
-
+    //############################################
     @Override
     public void calculateFat() {
 
     }
-
+    //############################################
     @Override
     public void calculateCarbs() {
 
     }
+    //############################################
 }

@@ -3,16 +3,32 @@ package Miguel.Corporation;
 import java.io.File;
 import java.util.Scanner;
 
+/**
+ * <h1>Login Class</h1>
+ * This class will give the ability to login in the welcomePage(); inside Application Class
+ *
+ * @author  Miguel Emmara - 1802146
+ * @version 1.0
+ * @since   10/10/2020
+ */
 public class Login {
     private String userName;
     private String password;
 
+    /**
+     * 2-Parameters Constructor
+     * @param userName : Get userName From User.
+     * @param password : Get PassWord From user.
+     * @author  Miguel Emmara - 1802146
+     */
     public Login(String userName, String password) {
         setUserName(userName);
         setPassword(password);
         this.password = password;
     }
 
+    // Getter and setter methods for Object's instance data.
+    //------------------------------------------------------------------
     public String getUserName() {
         return userName;
     }
@@ -20,7 +36,7 @@ public class Login {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
+    //------------------------------------------------------------------
     public String getPassword() {
         return password;
     }
@@ -28,7 +44,14 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
+    //------------------------------------------------------------------
 
+    /**
+     * This method is verifyLogin user
+     * It will check if the username and passwords entered by user is valid and exist in the members.txt
+     * @param filepath : members.txt.
+     * @author  Miguel Emmara - 1802146
+     */
     public boolean verifyLogin(String filepath) {
         boolean found = false;
         String tempUsername = "";

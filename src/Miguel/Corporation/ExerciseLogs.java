@@ -7,18 +7,33 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * <h1>Exercise Class</h1>
+ * This Class integrates for 2 functionality, to read and create a daily exercises logs
+ *
+ * @author  Miguel Emmara - 1802146
+ * @version 1.0
+ * @since   10/10/2020
+ */
 public class ExerciseLogs {
     private int numberExercises;
     private final String userName;
     private final ArrayList<String> exerciseList;
     private LocalDate now;
 
+    /**
+     * Default Constructor
+     * @param userName : Get userName From User.
+     * @author  Miguel Emmara - 1802146
+     */
     public ExerciseLogs(String userName) {
         this.userName = userName;
         this.exerciseList = new ArrayList<>();
         this.now = LocalDate.now();
     }
 
+    // Getter and setter methods for Object's instance data.
+    //------------------------------------------------------------------
     public int getNumberExercises() {
         return numberExercises;
     }
@@ -30,7 +45,14 @@ public class ExerciseLogs {
     public String getUserName() {
         return userName;
     }
+    //------------------------------------------------------------------
 
+    /**
+     * This will get user information and will save it a csv file
+     * @param scanner : Scanner to grab user input.
+     * @return none
+     * @author  Miguel Emmara - 1802146
+     */
     public void getInput(Scanner scanner) throws IOException {
 
         boolean success = false;
@@ -70,6 +92,12 @@ public class ExerciseLogs {
 
     }
 
+    /**
+     * This will display File Names Available (csv) for user to read it in the console
+     * @param scanner : Scanner to grab user input.
+     * @return none
+     * @author  Miguel Emmara - 1802146
+     */
     public void readExerciseLog(Scanner scanner) throws IOException {
         File directoryPath = new File(System.getProperty("user.dir"));
         // List text files only
@@ -89,6 +117,8 @@ public class ExerciseLogs {
                 counter++;
                 arrayLists.add(file.getName());
             }
+
+            // Allow user to choose the files numbers, and get retrieve the file name from arraylists
             int i;
             boolean success = false;
             while (!success) {
@@ -137,6 +167,9 @@ public class ExerciseLogs {
                     scanner.nextLine();
                 }
             }
+        } else {
+            System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
+                    "You Can Create one Within The Main Menu Options 6");
         }
     }
 }

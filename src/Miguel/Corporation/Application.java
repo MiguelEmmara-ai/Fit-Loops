@@ -22,7 +22,7 @@ public class Application {
 
     /**
      * This method is used to greet the user.
-     * @param scanner
+     * @param scanner : Scanner to grab user input.
      * @return boolean, This method will return false
      * @author  Miguel Emmara - 1802146
      */
@@ -172,7 +172,7 @@ public class Application {
 
      /**
      * This method is the main page (main menu).
-     * @param scanner
+     * @param scanner : Scanner to grab user input.
      * @return boolean, This method will return boolean success
       * @author  Miguel Emmara - 1802146
      */
@@ -268,7 +268,7 @@ public class Application {
 
     /**
      * This method is The Regime Algorithm To Determine Action Depending On User's Result Week By Week.
-     * @param scanner
+     * @param scanner : Scanner to grab user input.
      * @return none
      * @author  Miguel Emmara - 1802146
      */
@@ -398,7 +398,7 @@ public class Application {
 
     /**
      * This method is to validate is the date format entered by user is true.
-     * @param String dateOfBirth
+     * @param dateOfBirth : date of birth String
      * @return boolean, This method will return true if date format entered according to the regex.
      * @author  Miguel Emmara - 1802146
      */
