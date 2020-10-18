@@ -20,6 +20,7 @@ public class Main extends Application {
      * This is the main method which makes use Application Class To Start The Program.
      * @param args Unused.
      * @return Nothing.
+     * @author  Miguel Emmara - 1802146
      */
     public static void main(String[] args) {
         Application application = new Application();

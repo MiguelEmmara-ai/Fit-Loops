@@ -16,9 +16,6 @@ public class Register {
     private String passWords;
     private GoalType goalType;
 
-    public Register() {
-    }
-
     public Register(String firstName, String lastName, LocalDate dateOfBirth, float weight, float height,
                     GoalType goalType, String userName, String passWords) {
         setFirstName(firstName);
@@ -42,7 +39,6 @@ public class Register {
         setUserName(userName);
         setPassWords(passWords);
     }
-
 
     public String getFirstName() {
         return firstName;
@@ -140,5 +136,4 @@ public class Register {
             System.out.println("exception occurred" + e);
         }
     }
-
 }

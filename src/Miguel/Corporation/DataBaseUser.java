@@ -10,7 +10,8 @@ public class DataBaseUser {
     private String userName;
     private String passWords;
 
-    public DataBaseUser(String firstName, String lastName, String dateOfBirth, String weight, String height, String goalType, String userName, String passWords) {
+    public DataBaseUser(String firstName, String lastName, String dateOfBirth, String weight, String height,
+                        String goalType, String userName, String passWords) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -23,6 +24,7 @@ public class DataBaseUser {
 
     @Override
     public String toString() {
-        return firstName + "\n" + lastName + "\n" + dateOfBirth + "\n" + weight + "\n" + height + "\n" + userName + "\n" + passWords + "\n";
+        return firstName + "\n" + lastName + "\n" + dateOfBirth + "\n" + weight + "\n" + height + "\n" + goalType
+                + "\n" + userName + "\n" + passWords + "\n";
     }
 }

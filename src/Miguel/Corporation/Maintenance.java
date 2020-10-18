@@ -1,16 +1,13 @@
 package Miguel.Corporation;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Maintenance extends MacrosDatabases {
     private float calories;
-    private float activityMultiplier;
     private boolean saveMacros;
     DataBaseUser[] dataBaseUsers = new DataBaseUser[0];
 
@@ -52,10 +49,6 @@ public class Maintenance extends MacrosDatabases {
             DataBaseUser newUser = new DataBaseUser(firstName, lastName, dateOfBirth, weight, height, goalType, userName, passWords);
             dataBaseUsers = addUserData(dataBaseUsers, newUser);
         }
-
-        for (DataBaseUser product : dataBaseUsers) {
-            System.out.println(product);
-        }
     }
 
     private static DataBaseUser[] addUserData(DataBaseUser[] products, DataBaseUser productToAdd) {
@@ -64,6 +57,16 @@ public class Maintenance extends MacrosDatabases {
         newUserData[newUserData.length - 1] = productToAdd;
 
         return newUserData;
+    }
+
+    @Override
+    public float getCalories() {
+        return calories;
+    }
+
+    @Override
+    public void setCalories(float calories) {
+        this.calories = calories;
     }
 
     @Override
@@ -77,13 +80,18 @@ public class Maintenance extends MacrosDatabases {
     }
 
     @Override
-    public float getCalories() {
-        return calories;
+    public float getActivityMultiplier() {
+        return super.getActivityMultiplier();
     }
 
     @Override
-    public void setCalories(float calories) {
-        this.calories = calories;
+    public void setActivityMultiplier(float activityMultiplier) {
+        super.setActivityMultiplier(activityMultiplier);
+    }
+
+    @Override
+    public void activityMultiplier(Scanner scanner) {
+        super.activityMultiplier(scanner);
     }
 
     @Override
@@ -131,28 +139,14 @@ public class Maintenance extends MacrosDatabases {
     }
 
     @Override
-    public void activityMultiplier(Scanner scanner) {
-        super.activityMultiplier(scanner);
-    }
-
-    public float getActivityMultiplier() {
-        return activityMultiplier;
-    }
-
-    @Override
-    public void setActivityMultiplier(float activityMultiplier) {
-        this.activityMultiplier = activityMultiplier;
-    }
-
-    @Override
     public void calculateCalories() {
         if (isKg()) {
-            this.setCalories((float) (getWeight() * 22 * MacrosDatabases.getActivityMultiplier(getActivityMultiplier())));
+            this.setCalories(getWeight() * 22 * getActivityMultiplier());
             String strDouble = String.format("%.0f", getCalories());
             System.out.println("Calories: " + strDouble);
 
         } else if (isPound()) {
-            this.setCalories((float) (getWeight() * 10 * MacrosDatabases.getActivityMultiplier(getActivityMultiplier())));
+            this.setCalories(getWeight() * 10 * getActivityMultiplier());
             String strDouble = String.format("%.0f", getCalories());
             System.out.println("Calories: " + strDouble);
         }

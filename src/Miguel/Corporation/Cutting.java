@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Cutting extends MacrosDatabases {
     private float calories;
     private float deficitCalories;
-    private float activityMultiplier;
     private boolean saveMacros;
     DataBaseUser[] dataBaseUsers = new DataBaseUser[0];
 
@@ -51,10 +50,6 @@ public class Cutting extends MacrosDatabases {
             DataBaseUser newUser = new DataBaseUser(firstName, lastName, dateOfBirth, weight, height, goalType, userName, passWords);
             dataBaseUsers = addUserData(dataBaseUsers, newUser);
         }
-
-        for (DataBaseUser product : dataBaseUsers) {
-            System.out.println(product);
-        }
     }
 
     private static DataBaseUser[] addUserData(DataBaseUser[] products, DataBaseUser productToAdd) {
@@ -63,6 +58,14 @@ public class Cutting extends MacrosDatabases {
         newUserData[newUserData.length - 1] = productToAdd;
 
         return newUserData;
+    }
+
+    public float getDeficitCalories() {
+        return deficitCalories;
+    }
+
+    public void setDeficitCalories(float deficitCalories) {
+        this.deficitCalories = deficitCalories;
     }
 
     @Override
@@ -85,12 +88,19 @@ public class Cutting extends MacrosDatabases {
         this.calories = calories;
     }
 
-    public float getDeficitCalories() {
-        return deficitCalories;
+    @Override
+    public float getActivityMultiplier() {
+        return super.getActivityMultiplier();
     }
 
-    public void setDeficitCalories(float deficitCalories) {
-        this.deficitCalories = deficitCalories;
+    @Override
+    public void setActivityMultiplier(float activityMultiplier) {
+        super.setActivityMultiplier(activityMultiplier);
+    }
+
+    @Override
+    public void activityMultiplier(Scanner scanner) {
+        super.activityMultiplier(scanner);
     }
 
     @Override
@@ -137,34 +147,19 @@ public class Cutting extends MacrosDatabases {
     }
 
     @Override
-    public void activityMultiplier(Scanner scanner) {
-        super.activityMultiplier(scanner);
-    }
-
-    public float getActivityMultiplier() {
-        return activityMultiplier;
-    }
-
-    @Override
-    public void setActivityMultiplier(float activityMultiplier) {
-        this.activityMultiplier = activityMultiplier;
-    }
-
-    @Override
     public void calculateCalories() {
         if (isKg()) {
-            this.setCalories(getWeight() * 22 * MacrosDatabases.getActivityMultiplier(getActivityMultiplier()));
+            this.setCalories(getWeight() * 22 * getActivityMultiplier());
             this.setDeficitCalories(getCalories() - 500);
             String strDouble = String.format("%.0f", getDeficitCalories());
             System.out.println("Calories: " + strDouble);
 
         } else if (isPound()) {
-            this.setCalories(getWeight() * 10 * MacrosDatabases.getActivityMultiplier(getActivityMultiplier()));
+            this.setCalories(getWeight() * 10 * getActivityMultiplier());
             this.setDeficitCalories(getCalories() - 500);
             String strDouble = String.format("%.0f", getDeficitCalories());
             System.out.println("Calories: " + strDouble);
         }
-        //super.calculateCalories();
     }
 
     @Override

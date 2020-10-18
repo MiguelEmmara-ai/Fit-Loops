@@ -8,31 +8,15 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ExerciseLogs {
-    private int weeks;
-    private int days;
     private int numberExercises;
     private final String userName;
-    private final ArrayList<String> exerciseList = new ArrayList<>();
-    private LocalDate now = LocalDate.now();
+    private final ArrayList<String> exerciseList;
+    private LocalDate now;
 
     public ExerciseLogs(String userName) {
         this.userName = userName;
-    }
-
-    public int getWeeks() {
-        return weeks;
-    }
-
-    public void setWeeks(int weeks) {
-        this.weeks = weeks;
-    }
-
-    public int getDays() {
-        return days;
-    }
-
-    public void setDays(int days) {
-        this.days = days;
+        this.exerciseList = new ArrayList<>();
+        this.now = LocalDate.now();
     }
 
     public int getNumberExercises() {
@@ -53,9 +37,9 @@ public class ExerciseLogs {
         while (!success) {
             try {
                 System.out.print("\nHow Many Exercise You Did Today?: ");
-                int numberExercise = scanner.nextInt();
+                setNumberExercises(scanner.nextInt());
                 scanner.nextLine();
-                for (int i = 0; i < numberExercise; i++) {
+                for (int i = 0; i < getNumberExercises(); i++) {
                     System.out.print("Exercise " + (i + 1) + " Name: ");
                     exerciseList.add(scanner.nextLine());
                 }
@@ -67,8 +51,8 @@ public class ExerciseLogs {
 
                 bw.write("Exercise Name");
                 bw.newLine();
-                for (int i = 0; i < exerciseList.size(); i++) {
-                    bw.write(exerciseList.get(i));
+                for (String s : exerciseList) {
+                    bw.write(s);
                     bw.newLine();
                 }
                 System.out.println("\nYour Daily Exercise Log Has Been Saved as \"" + fileName + "\"");

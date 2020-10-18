@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Bulking extends MacrosDatabases {
     private float calories;
     private float surplusCalories;
-    private float activityMultiplier;
     private boolean saveMacros;
     DataBaseUser[] dataBaseUsers = new DataBaseUser[0];
 
@@ -51,10 +50,6 @@ public class Bulking extends MacrosDatabases {
             DataBaseUser newUser = new DataBaseUser(firstName, lastName, dateOfBirth, weight, height, goalType, userName, passWords);
             dataBaseUsers = addUserData(dataBaseUsers, newUser);
         }
-
-        for (DataBaseUser product : dataBaseUsers) {
-            System.out.println(product);
-        }
     }
 
     private static DataBaseUser[] addUserData(DataBaseUser[] products, DataBaseUser productToAdd) {
@@ -63,6 +58,14 @@ public class Bulking extends MacrosDatabases {
         newUserData[newUserData.length - 1] = productToAdd;
 
         return newUserData;
+    }
+
+    public float getSurplusCalories() {
+        return surplusCalories;
+    }
+
+    public void setSurplusCalories(float surplusCalories) {
+        this.surplusCalories = surplusCalories;
     }
 
     @Override
@@ -85,21 +88,19 @@ public class Bulking extends MacrosDatabases {
         this.calories = calories;
     }
 
-    public float getSurplusCalories() {
-        return surplusCalories;
-    }
-
-    public void setSurplusCalories(float surplusCalories) {
-        this.surplusCalories = surplusCalories;
-    }
-
+    @Override
     public float getActivityMultiplier() {
-        return activityMultiplier;
+        return super.getActivityMultiplier();
     }
 
     @Override
     public void setActivityMultiplier(float activityMultiplier) {
-        this.activityMultiplier = activityMultiplier;
+        super.setActivityMultiplier(activityMultiplier);
+    }
+
+    @Override
+    public void activityMultiplier(Scanner scanner) {
+        super.activityMultiplier(scanner);
     }
 
     @Override
@@ -146,25 +147,19 @@ public class Bulking extends MacrosDatabases {
     }
 
     @Override
-    public void activityMultiplier(Scanner scanner) {
-        super.activityMultiplier(scanner);
-    }
-
-    @Override
     public void calculateCalories() {
         if (isKg()) {
-            this.setCalories(getWeight() * 22 * MacrosDatabases.getActivityMultiplier(getActivityMultiplier()));
+            this.setCalories(getWeight() * 22 * getActivityMultiplier());
             this.setSurplusCalories(getCalories() + 500);
             String strDouble = String.format("%.0f", getSurplusCalories());
             System.out.println("Calories: " + strDouble);
 
         } else if (isPound()) {
-            this.setCalories(getWeight() * 10 * MacrosDatabases.getActivityMultiplier(getActivityMultiplier()));
+            this.setCalories(getWeight() * 10 * getActivityMultiplier());
             this.setSurplusCalories(getCalories() + 500);
             String strDouble = String.format("%.0f", getSurplusCalories());
             System.out.println("Calories: " + strDouble);
         }
-        //super.calculateCalories();
     }
 
     @Override
@@ -183,13 +178,7 @@ public class Bulking extends MacrosDatabases {
 
     @Override
     public void calculateFat() {
-        if (isKg()) {
-            float tempCalories = (float) (this.getSurplusCalories() * 0.25);
-            this.setFats(tempCalories / 9);
-            String strDouble = String.format("%.2f", getFats());
-            System.out.println("Fats: " + strDouble + " Grams of Fat.");
-
-        } else if (isPound()) {
+        if (isKg() || isPound()) {
             float tempCalories = (float) (this.getSurplusCalories() * 0.25);
             this.setFats(tempCalories / 9);
             String strDouble = String.format("%.2f", getFats());
@@ -199,22 +188,13 @@ public class Bulking extends MacrosDatabases {
 
     @Override
     public void calculateCarbs() {
-        if (isKg()) {
+        if (isKg() || isPound()) {
             float tempProteinInCal = this.getProteins() * 4;
             float tempFatInCal = this.getFats() * 9;
             float tempTotalProAndFat = tempProteinInCal + tempFatInCal;
             this.setCarbs((this.getSurplusCalories() - tempTotalProAndFat) / 4);
             String strDouble = String.format("%.0f", getCarbs());
             System.out.println("Carbs: " + strDouble + " Grams of Carbs");
-
-        } else if (isPound()){
-            float tempProteinInCal = this.getProteins() * 4;
-            float tempFatInCal = this.getFats() * 9;
-            float tempTotalProAndFat = tempProteinInCal + tempFatInCal;
-            this.setCarbs((this.getSurplusCalories() - tempTotalProAndFat) / 4);
-            String strDouble = String.format("%.0f", getCarbs());
-            System.out.println("Carbs: " + strDouble  + " Grams of Carbs");
         }
-        //super.calculateCarbs();
     }
 }

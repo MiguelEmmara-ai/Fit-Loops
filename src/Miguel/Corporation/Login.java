@@ -29,7 +29,7 @@ public class Login {
         this.password = password;
     }
 
-    public boolean verifyLogin(String userName, String password, String filepath) {
+    public boolean verifyLogin(String filepath) {
         boolean found = false;
         String tempUsername = "";
         String tempPassword = "";

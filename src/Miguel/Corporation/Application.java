@@ -1,11 +1,7 @@
 package Miguel.Corporation;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -26,8 +22,9 @@ public class Application {
 
     /**
      * This method is used to greet the user.
-     *
+     * @param scanner
      * @return boolean, This method will return false
+     * @author  Miguel Emmara - 1802146
      */
     public boolean welcomePage(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException, IOException {
         boolean success = true;
@@ -64,7 +61,7 @@ public class Application {
                     secretPassword.encrypt(theKey.toCharArray());
 
                     Login loginPage = new Login(userName, secretPassword.toString());
-                    if (loginPage.verifyLogin(userName, secretPassword.toString(), filepath)) {
+                    if (loginPage.verifyLogin(filepath)) {
                         System.out.println("\nLogin Successfully! Welcome Back To Fit Loops " + loginPage.getUserName() + "!");
                         login = false;
                     } else {
@@ -173,12 +170,13 @@ public class Application {
             return false;
         }
 
-        /**
-         * This method is the main page (main menu).
-         * @return boolean, This method will return boolean success
-         */
-        public boolean mainMenu (Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException, IOException
-        {
+     /**
+     * This method is the main page (main menu).
+     * @param scanner
+     * @return boolean, This method will return boolean success
+      * @author  Miguel Emmara - 1802146
+     */
+    public boolean mainMenu (Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException, IOException {
             boolean success = true;
 
             System.out.println("\nChoose Your Options");
@@ -249,7 +247,7 @@ public class Application {
                 case 9 -> {
                     System.out.println("\nRead My Current Macros Log");
                     System.out.println("\nTo Continue, Please Choose Your File You Want To Read");
-                    readMacrosLog(scanner);
+                    MacrosDatabases.readMacrosLog(scanner);
                 }
                 case 10 -> {
                     System.out.println("\nDiet Regime Algorithm");
@@ -268,56 +266,12 @@ public class Application {
             return success;
         }
 
-        public void readMacrosLog (Scanner scanner){
-            File directoryPath = new File(System.getProperty("user.dir"));
-            // List text files only
-            System.out.println("\n----------- File Names Available -----------");
-            File[] files = directoryPath.listFiles(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return name.endsWith("Macros.txt");
-                }
-            });
-
-            int counter = 1;
-            if (files != null && files.length > 0) {
-                ArrayList<String> arrayLists = new ArrayList<>(counter);
-                for (File file : files) {
-                    System.out.println(counter + ". " + file.getName());
-                    counter++;
-                    arrayLists.add(file.getName());
-                }
-                //System.out.println("\nArray List");
-                int i;
-            /*for (i = 0; i < arrayLists.size(); i++)
-                System.out.print((i+1) + ". " + arrayLists.get(i) + "\n");*/
-
-                System.out.print("\nPlease Enter Your Options: ");
-                i = scanner.nextInt();
-                if (i <= arrayLists.size()) {
-                    //System.out.println(i);
-                    //System.out.print(arrayLists.get(i-1) + "\n");
-                    System.out.println();
-                    try {
-                        File myObj = new File(arrayLists.get(i - 1));
-                        Scanner myReader = new Scanner(myObj);
-                        while (myReader.hasNextLine()) {
-                            String data = myReader.nextLine();
-                            System.out.println(data);
-                        }
-                        myReader.close();
-                    } catch (FileNotFoundException e) {
-                        System.out.println("An error occurred.");
-                        e.printStackTrace();
-                    }
-                }
-
-            } else {
-                System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
-                        "You Can Create one Within The Main Menu Options 1,2,3");
-            }
-        }
-
+    /**
+     * This method is The Regime Algorithm To Determine Action Depending On User's Result Week By Week.
+     * @param scanner
+     * @return none
+     * @author  Miguel Emmara - 1802146
+     */
         public void dietRegimeAlgorithm (Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException {
             int i = 0;
             int weeks = 0;
@@ -442,10 +396,16 @@ public class Application {
             }
         }
 
-        public boolean isValidDate (String d){
+    /**
+     * This method is to validate is the date format entered by user is true.
+     * @param String dateOfBirth
+     * @return boolean, This method will return true if date format entered according to the regex.
+     * @author  Miguel Emmara - 1802146
+     */
+        public boolean isValidDate (String dateOfBirth){
             String regex = "^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$";
             Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher((CharSequence) d);
+            Matcher matcher = pattern.matcher((CharSequence) dateOfBirth);
             return matcher.matches();
         }
     }
