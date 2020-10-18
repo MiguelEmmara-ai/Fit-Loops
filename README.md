@@ -13,8 +13,10 @@ Fit Loops is all in one Fitness Applications to help and keep tracks diet and ex
 3. 
 
 # UML
+Updating...
 
 # Screenshots
+Updating...
 
 # License
 Copyright 2020. Code released under the MIT license.
