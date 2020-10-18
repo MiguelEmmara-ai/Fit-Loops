@@ -55,14 +55,16 @@ public class Application {
                 System.out.println("\nTo Login, Please Enter Your Credentials");
                 do {
                     System.out.print("\n\tUsername: ");
-                    userName = scanner.next();
+                    userName = scanner.nextLine();
 
                     System.out.print("\tPassword: ");
-                    passWord = scanner.next();
-                    scanner.nextLine();
+                    passWord = scanner.nextLine();
+                    PassWords secretPassword = new PassWords(passWord,false);
+                    String theKey = userName + "SpecialKey123";
+                    secretPassword.encrypt(theKey.toCharArray());
 
-                    Login loginPage = new Login(userName, passWord);
-                    if (loginPage.verifyLogin(userName, passWord, filepath)) {
+                    Login loginPage = new Login(userName, secretPassword.toString());
+                    if (loginPage.verifyLogin(userName, secretPassword.toString(), filepath)) {
                         System.out.println("\nLogin Successfully! Welcome Back To Fit Loops " + loginPage.getUserName() + "!");
                         login = false;
                     } else {
@@ -113,34 +115,37 @@ public class Application {
 
                             System.out.print("Password: ");
                             passWord = scanner.nextLine();
+                            PassWords secretPassword = new PassWords(passWord,false);
+                            String theKey = userName + "SpecialKey123";
+                            secretPassword.encrypt(theKey.toCharArray());
 
                             switch (goalType) {
                                 case 1 -> {
-                                    Register register = new Register(firstName, lastName, dateOfBirth, weight, height, GoalType.MAINTENANCE, userName, passWord);
+                                    Register register = new Register(firstName, lastName, dateOfBirth, weight, height, GoalType.MAINTENANCE, userName, secretPassword.toString());
                                     register.createUserAccountInformation();
-                                    register.addNewMembers(filepath, "\n" + userName + "," + passWord);
+                                    register.addNewMembers(filepath, "\n" + userName + "," + secretPassword.toString());
                                     System.out.println("\nAccount Created Successfully!");
 
                                     System.out.println("Username: " + userName);
                                     System.out.println("Password: YourPassword!");
                                 }
                                 case 2 -> {
-                                    Register register = new Register(firstName, lastName, dateOfBirth, weight, height, GoalType.CUTTING, userName, passWord);
+                                    Register register = new Register(firstName, lastName, dateOfBirth, weight, height, GoalType.CUTTING, userName, secretPassword.toString());
                                     register.createUserAccountInformation();
-                                    register.addNewMembers(filepath, "\n" + userName + "," + passWord);
+                                    register.addNewMembers(filepath, "\n" + userName + "," + secretPassword.toString());
                                     System.out.println("\nAccount Created Successfully!");
 
                                     System.out.println("Username: " + userName);
                                     System.out.println("Password: YourPassword!");
                                 }
                                 case 3 -> {
-                                    Register register = new Register(firstName, lastName, dateOfBirth, weight, height, GoalType.BULKING, userName, passWord);
+                                    Register register = new Register(firstName, lastName, dateOfBirth, weight, height, GoalType.BULKING, userName, secretPassword.toString());
                                     register.createUserAccountInformation();
-                                    register.addNewMembers(filepath, "\n" + userName + "," + passWord);
+                                    register.addNewMembers(filepath, "\n" + userName + "," + secretPassword.toString());
                                     System.out.println("\nAccount Created Successfully!");
 
                                     System.out.println("Username: " + userName);
-                                    System.out.println("Password: YourPassword!");
+                                    System.out.println("Password: " + secretPassword.toString() + " (Encrypted!)");
                                 }
                                 default -> throw new IndexOutOfBoundsException();
                             }
