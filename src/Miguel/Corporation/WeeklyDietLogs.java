@@ -29,7 +29,6 @@ public class WeeklyDietLogs {
         return userName;
     }
 
-    // Fix This
     public void getInput(Scanner scanner) throws IOException {
         System.out.print("Calories: ");
         String calories;

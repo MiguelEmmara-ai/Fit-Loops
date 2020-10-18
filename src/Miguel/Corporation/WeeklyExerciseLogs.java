@@ -1,9 +1,10 @@
 package Miguel.Corporation;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class WeeklyExerciseLogs {
@@ -11,11 +12,11 @@ public class WeeklyExerciseLogs {
     private int days;
     private int numberExercises;
     private final String userName;
-    private final ArrayList<String> exerciseList;
+    private final ArrayList<String> exerciseList = new ArrayList<>();
+    private LocalDate now = LocalDate.now();
 
     public WeeklyExerciseLogs(String userName) {
         this.userName = userName;
-        this.exerciseList = new ArrayList<>(numberExercises);
     }
 
     public int getWeeks() {
@@ -47,56 +48,96 @@ public class WeeklyExerciseLogs {
     }
 
     public void getInput(Scanner scanner) throws IOException {
-        System.out.print("\nHow Many Weeks Would You Like To Create A Log (eg. 10): ");
-        setWeeks(scanner.nextInt());
-        scanner.nextLine();
-        System.out.print("How Many Training Days in a week (eg. 5): ");
-        setDays(scanner.nextInt());
-        scanner.nextLine();
 
-        for (int i = 0; i < getWeeks(); i++) {
-            System.out.println("\nWeeks " + (i+1));
-            for (int j = 0; j < getDays(); j++) {
-                System.out.println("Days " + (j+1));
-                System.out.print("How Many Exercise: ");
-                setNumberExercises(scanner.nextInt());
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.print("\nHow Many Exercise You Did Today?: ");
+                int numberExercise = scanner.nextInt();
                 scanner.nextLine();
-                for (int k = 0; k < getNumberExercises(); k++) {
-                    System.out.println("Exercise " + (k+1) + " Name: ");
+                for (int i = 0; i < numberExercise; i++) {
+                    System.out.print("Exercise " + (i + 1) + " Name: ");
                     exerciseList.add(scanner.nextLine());
                 }
-            }
-        }
 
-        // Printing the array
-        for (int i = 0; i < getWeeks(); i++) {
-            System.out.println("\nWeeks " + (i+1));
-            for (int j = 0; j < getDays(); j++) {
-                System.out.println("Days " + (j+1));
-                System.out.println("Workout");
-                for (int k = 0; k < exerciseList.size(); k++) {
-                    System.out.print(exerciseList.get(i) + "\n");
+                String fileName = getUserName() + " (" + now.toString() + ") - Exercise Log.csv";
+                File file = new File(fileName);
+                FileWriter fw = new FileWriter(file);
+                BufferedWriter bw = new BufferedWriter(fw);
+
+                bw.write("Exercise Name");
+                bw.newLine();
+                for (int i = 0; i < exerciseList.size(); i++) {
+                    bw.write(exerciseList.get(i));
+                    bw.newLine();
                 }
-                System.out.println();
+                System.out.println("\nYour Daily Exercise Log Has Been Saved as \"" + fileName + "\"");
+
+                bw.close();
+                fw.close();
+                success = true;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Invalid menu input. Please try again.");
+            } catch (InputMismatchException | IllegalArgumentException e) {
+                System.out.println("Invalid menu input. Please try again.");
+                scanner.nextLine();
             }
         }
 
-        BufferedWriter outputWriter = null;
-        outputWriter = new BufferedWriter(new FileWriter("Weekly Exercise Log - " + getUserName() + ".txt"));
-        for (int i = 0; i < getWeeks(); i++) {
-            outputWriter.write("Weeks " + (i+1));
-            for (int j = 0; j < getDays(); j++) {
-                outputWriter.write("\nDays " + (j+1));
-                outputWriter.write("\nWorkout");
-                for (int k = 0; k < exerciseList.size(); k++) {
-                    outputWriter.write("\n"+ exerciseList.get(i));
+    }
+
+    public void readExerciseLog(Scanner scanner) throws IOException {
+        File directoryPath = new File(System.getProperty("user.dir"));
+        // List text files only
+        System.out.println("\n----------- File Names Available -----------");
+        File[] files=directoryPath.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith("Exercise Log.csv");
+            }
+        });
+
+        int counter = 1;
+        if (files != null && files.length > 0) {
+            ArrayList<String> arrayLists = new ArrayList<>(counter);
+            for (File file : files) {
+                System.out.println(counter + ". " + file.getName());
+                counter++;
+                arrayLists.add(file.getName());
+            }
+            System.out.println("\nArray List");
+            int i;
+            for (i = 0; i < arrayLists.size(); i++)
+                System.out.print((i+1) + ". " + arrayLists.get(i) + "\n");
+
+            System.out.print("\nPlease Enter Your Options: ");
+            i = scanner.nextInt();
+            if (i <= arrayLists.size()) {
+                System.out.println(i);
+                System.out.print(arrayLists.get(i-1) + "\n");
+                try {
+                    String pathToCsv = arrayLists.get(i-1);
+                    BufferedReader csvReader = new BufferedReader(new FileReader(pathToCsv));
+                    String row;
+                    while ((row = csvReader.readLine()) != null) {
+                        String[] data = row.split(",");
+                        String joined = String.join("", data);
+                        System.out.println(Arrays
+                                .toString(data)
+                                .replace("[","")
+                                .replace("]","")
+                                .replace(",","             "));
+                    }
+                    csvReader.close();
+                }catch (FileNotFoundException e) {
+                    System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
+                            "You Can Create one Within The Main Menu Options 5");
+                    e.printStackTrace();
                 }
-                outputWriter.newLine();
             }
+        } else {
+            System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
+                    "You Can Create one Within The Main Menu Options 5");
         }
-        outputWriter.flush();
-        outputWriter.close();
-
-        System.out.println("Your " + getWeeks() + " Exercise Log Has Been Saved as \"Weekly Diet Log - " + getUserName() + ".txt\"");
     }
 }

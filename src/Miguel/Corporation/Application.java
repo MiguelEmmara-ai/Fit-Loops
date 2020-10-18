@@ -224,6 +224,8 @@ public class Application {
             }
             case 8 ->{
                 System.out.println("\nRead My Exercise Log (if there is any)");
+                WeeklyExerciseLogs weeklyExerciseLogs = new WeeklyExerciseLogs(userName);
+                weeklyExerciseLogs.readExerciseLog(scanner);
             }
             case 9 ->{
                 System.out.println("\nRead My Current Macros Log");
