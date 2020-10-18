@@ -12,7 +12,6 @@ public class WeeklyExerciseLogs {
     private int numberExercises;
     private final String userName;
     private final ArrayList<String> exerciseList;
-    //private static final Scanner scanner = new Scanner(System.in);
 
     public WeeklyExerciseLogs(String userName) {
         this.userName = userName;

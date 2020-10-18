@@ -168,8 +168,8 @@ public class Application {
         System.out.println("\t2. Lean Cutting Macro Calculator");
         System.out.println("\t3. Lean Bulking Macro Calculator");
         System.out.println("\t4. Training Plans");
-        System.out.println("\t5. Create Weekly Diet Log");
-        System.out.println("\t6. Create Weekly Exercise Log");
+        System.out.println("\t5. Create Diet Log");
+        System.out.println("\t6. Create Exercise Log");
         System.out.println("\t7. Read My Weekly Diet Log (if there is any)");
         System.out.println("\t8. Read My Weekly Exercise Log (if there is any)");
         System.out.println("\t9. Read My Current Macros Log");
@@ -207,7 +207,7 @@ public class Application {
             }
             case 5 ->{
                 System.out.println("\nCreate Weekly Diet Log");
-                System.out.println("\nTo Continue, Please Enter How Many Weeks Would You Like To Logs");
+                System.out.println("\nTo Continue, Please Enter The Following Information");
                 WeeklyDietLogs weeklyDietLogs = new WeeklyDietLogs(userName);
                 weeklyDietLogs.getInput(scanner);
             }

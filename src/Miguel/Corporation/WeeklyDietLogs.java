@@ -1,16 +1,16 @@
 package Miguel.Corporation;
 
-import javax.swing.*;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.*;
 
 public class WeeklyDietLogs {
     private int weeks;
     private final String userName;
     private final ArrayList<String> macrosDatabasesArrayList;
-    private List<List<String>> rows = new ArrayList<List<String>>();
+    private List<List<String>> rows;
     private List<String> list = new ArrayList<>();
-    private static final Scanner scanner = new Scanner(System.in);
+    private LocalDate now = LocalDate.now();
 
     public WeeklyDietLogs(String userName) {
         this.userName = userName;
@@ -31,7 +31,50 @@ public class WeeklyDietLogs {
 
     // Fix This
     public void getInput(Scanner scanner) throws IOException {
-        int counter = 1;
+        System.out.print("Calories: ");
+        String calories;
+        list.add(calories = scanner.nextLine());
+
+        System.out.print("Protein (Grams): ");
+        String protein;
+        list.add(protein = scanner.nextLine());
+
+        System.out.print("Fats (Grams): ");
+        String fats;
+        list.add(fats = scanner.nextLine());
+
+        System.out.print("Carbs (Grams): ");
+        String carbs;
+        list.add(carbs = scanner.nextLine());
+
+        System.out.print("Your Weekly Average (KG): ");
+        String averageBodyWeight;
+        list.add(averageBodyWeight = scanner.nextLine());
+
+        rows = Arrays.asList(Arrays.asList(calories, protein, fats, carbs, averageBodyWeight));
+        String fileName = getUserName() + " (" + now.toString() + ") - Diet Log.csv";
+
+        FileWriter csvWriter = new FileWriter(fileName);
+        csvWriter.append("Calories");
+        csvWriter.append(",");
+        csvWriter.append("Carbs (Grams)");
+        csvWriter.append(",");
+        csvWriter.append("Fats (Grams)");
+        csvWriter.append(",");
+        csvWriter.append("Protein (Grams)");
+        csvWriter.append(",");
+        csvWriter.append("Average Body Weight");
+        csvWriter.append("\n");
+
+        for (List<String> rowData : rows) {
+            csvWriter.append(String.join(",", rowData).replace("Weeks", ""));
+            csvWriter.append("\n");
+        }
+        csvWriter.flush();
+        csvWriter.close();
+
+        ////////////////
+        /*int counter = 1;
 
         System.out.print("\nWeeks: ");
         setWeeks(scanner.nextInt());
@@ -68,32 +111,33 @@ public class WeeklyDietLogs {
             System.out.println(rows.get(j).toString().replace("[", "").replace("]", ""));
             System.out.println("");
             counter++;
-        }
-        //rows = Arrays.asList(Arrays.asList("1",calories,protein,fats,carbs,averageBodyWeight));
-        for (int i = 0; i < getWeeks(); i++) {
-            rows = Collections.singletonList(new LinkedList<String>(Arrays.asList(weeks,rows.get(i).toString().replace("[", "").replace("]", ""))));
+            for (int i = 0; i < getWeeks(); i++) {
+                rows = Arrays.asList(Arrays.asList("1",calories,protein,fats,carbs,averageBodyWeight));
 
-            FileWriter csvWriter = new FileWriter("Weekly Diet Log - " + getUserName() + ".csv");
-            csvWriter.append("Weeks");
-            csvWriter.append(",");
-            csvWriter.append("Calories");
-            csvWriter.append(",");
-            csvWriter.append("Carbs");
-            csvWriter.append(",");
-            csvWriter.append("Fats");
-            csvWriter.append(",");
-            csvWriter.append("Protein");
-            csvWriter.append(",");
-            csvWriter.append("Average Body Weight");
-            csvWriter.append("\n");
-
-            for (List<String> rowData : rows) {
-                csvWriter.append(String.join(",", rowData).replace("Weeks", ""));
+                FileWriter csvWriter = new FileWriter("Weekly Diet Log - " + getUserName() + ".csv");
+                csvWriter.append("Weeks");
+                csvWriter.append(",");
+                csvWriter.append("Calories");
+                csvWriter.append(",");
+                csvWriter.append("Carbs");
+                csvWriter.append(",");
+                csvWriter.append("Fats");
+                csvWriter.append(",");
+                csvWriter.append("Protein");
+                csvWriter.append(",");
+                csvWriter.append("Average Body Weight");
                 csvWriter.append("\n");
+
+                for (List<String> rowData : rows) {
+                    csvWriter.append(String.join(",", rowData).replace("Weeks", ""));
+                    csvWriter.append("\n");
+                }
+                csvWriter.flush();
+                csvWriter.close();
             }
-            csvWriter.flush();
-            csvWriter.close();
-        }
+        }*/
+        ////////////////
+        //rows = Arrays.asList(Arrays.asList("1",calories,protein,fats,carbs,averageBodyWeight));
 
         /*for (int j = 0; j < getWeeks(); j++) {
             System.out.println("\nWeek " + (j+1));
@@ -205,10 +249,6 @@ public class WeeklyDietLogs {
         outputWriter.flush();
         outputWriter.close();*/
 
-        System.out.println("\nYour " + getWeeks() + " Weeks Diet Log Has Been Saved as \"Weekly Diet Log - " + getUserName() + ".csv\"");
-    }
-
-    public String convertFloatToString(float floatValue) {
-        return ("" + floatValue);
+        System.out.println("\nYour Daily Diet Log Has Been Saved as \"" + fileName + "\"");
     }
 }
