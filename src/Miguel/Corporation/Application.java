@@ -1,8 +1,10 @@
 package Miguel.Corporation;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -176,7 +178,7 @@ public class Application {
             case 9 ->{
                 System.out.println("\nRead My Current Macros Log");
                 System.out.println("\nTo Continue, Please Choose Your File You Want To Read");
-                readMacrosLog();
+                readMacrosLog(scanner);
             }
             case 10 ->{
                 System.out.println("\nDiet Regime Algorithm");
@@ -195,9 +197,9 @@ public class Application {
         return success;
     }
 
-    public void readMacrosLog() {
+    public void readMacrosLog(Scanner scanner) {
         File directoryPath = new File(System.getProperty("user.dir"));
-        //List text files only
+        // List text files only
         System.out.println("\n----------- File Names Available -----------");
         File[] files=directoryPath.listFiles(new FilenameFilter() {
             @Override
@@ -206,11 +208,41 @@ public class Application {
             }
         });
 
-        for (File file : files) {
-            System.out.println(file.getName());
-        }
+        int counter = 1;
+        if (files != null && files.length > 0) {
+            ArrayList<String> arrayLists = new ArrayList<>(counter);
+            for (File file : files) {
+                System.out.println(counter + ". " + file.getName());
+                counter++;
+                arrayLists.add(file.getName());
+            }
+            System.out.println("\nArray List");
+            int i;
+            for (i = 0; i < arrayLists.size(); i++)
+                System.out.print((i+1) + ". " + arrayLists.get(i) + "\n");
 
-        // Choose file
-        // Display that file
+            System.out.print("\nPlease Enter Your Options: ");
+            i = scanner.nextInt();
+            if (i <= arrayLists.size()) {
+                System.out.println(i);
+                System.out.print(arrayLists.get(i-1) + "\n");
+                try {
+                    File myObj = new File(arrayLists.get(i-1));
+                    Scanner myReader = new Scanner(myObj);
+                    while (myReader.hasNextLine()) {
+                        String data = myReader.nextLine();
+                        System.out.println(data);
+                    }
+                    myReader.close();
+                } catch (FileNotFoundException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
+            }
+
+        } else {
+            System.out.println("Error, The System Cannot Find Any Saved Macros Log, " +
+                    "You Can Create one Within The Main Menu Options 1,2,3");
+        }
     }
 }
