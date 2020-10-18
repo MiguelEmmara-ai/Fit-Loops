@@ -23,6 +23,7 @@ public class Application {
 
     /**
      * This method is used to greet the user.
+     *
      * @return boolean, This method will return false
      */
     public boolean welcomePage(Scanner scanner) throws IndexOutOfBoundsException, InputMismatchException, IOException {
@@ -49,8 +50,8 @@ public class Application {
                     passWord = scanner.next();
                     scanner.nextLine();
 
-                    Login loginPage = new Login(userName,passWord);
-                    if (loginPage.verifyLogin(userName,passWord,filepath)) {
+                    Login loginPage = new Login(userName, passWord);
+                    if (loginPage.verifyLogin(userName, passWord, filepath)) {
                         System.out.println("\nLogin Successfully! Welcome Back To Fit Loops " + loginPage.getUserName() + "!");
                         login = false;
                     } else {
@@ -80,32 +81,79 @@ public class Application {
                 float height = scanner.nextFloat();
                 scanner.nextLine();
 
-                System.out.print("Username: ");
-                String userName = scanner.nextLine();
+                int goalType;
+                boolean success2 = false;
+                while (!success2) {
+                    try {
+                        System.out.println("Goal type: ");
+                        System.out.println("\n\t1. Maintenance");
+                        System.out.println("\t2. Cutting");
+                        System.out.println("\t3. Bulking");
+                        System.out.print("\nAnswer: ");
+                        goalType = scanner.nextInt();
+                        scanner.nextLine();
+                        success2 = true;
 
-                System.out.print("Password: ");
-                passWord = scanner.nextLine();
+                        System.out.print("Username: ");
+                        String userName = scanner.nextLine();
 
-                Register register = new Register(firstName,lastName,dateOfBirth,weight,height,userName,passWord);
-                register.createUserAccountInformation();
-                register.addNewMembers(filepath,"\n" + userName + "," + passWord);
-                System.out.println("\nAccount Created Successfully!");
+                        System.out.print("Password: ");
+                        passWord = scanner.nextLine();
 
-                System.out.println("Username: " + userName);
-                System.out.println("Password: YourPassword!");
-            } else if (userInput == 3) {
+                        switch (goalType) {
+                            case 1 -> {
+                                Register register = new Register(firstName, lastName, dateOfBirth, weight, height, GoalType.MAINTENANCE, userName, passWord);
+                                register.createUserAccountInformation();
+                                register.addNewMembers(filepath, "\n" + userName + "," + passWord);
+                                System.out.println("\nAccount Created Successfully!");
 
-                System.out.println("Goodbye!");
-                scanner.close();
-                success = false;
-            }
-            else {
-                throw new IndexOutOfBoundsException();
-            }
+                                System.out.println("Username: " + userName);
+                                System.out.println("Password: YourPassword!");
+                            }
+                            case 2 -> {
+                                Register register = new Register(firstName, lastName, dateOfBirth, weight, height, GoalType.CUTTING, userName, passWord);
+                                register.createUserAccountInformation();
+                                register.addNewMembers(filepath, "\n" + userName + "," + passWord);
+                                System.out.println("\nAccount Created Successfully!");
 
-        } while (success);
-        return false;
-    }
+                                System.out.println("Username: " + userName);
+                                System.out.println("Password: YourPassword!");
+                            }
+                            case 3 -> {
+                                Register register = new Register(firstName, lastName, dateOfBirth, weight, height, GoalType.BULKING, userName, passWord);
+                                register.createUserAccountInformation();
+                                register.addNewMembers(filepath, "\n" + userName + "," + passWord);
+                                System.out.println("\nAccount Created Successfully!");
+
+                                System.out.println("Username: " + userName);
+                                System.out.println("Password: YourPassword!");
+                            }
+                            default -> throw new IndexOutOfBoundsException();
+                        }
+
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Invalid menu input. Please try again.\n");
+                        System.out.flush();
+                    } catch (InputMismatchException | IllegalArgumentException e) {
+                        System.out.println("Invalid menu input. Please try again.\n");
+                        System.out.flush();
+                        scanner.nextLine();
+                    }
+                }
+
+                } else if (userInput == 3) {
+                    System.out.println("Goodbye!");
+                    scanner.close();
+                    success = true;
+                    System.exit(0);
+                } else {
+                    throw new IndexOutOfBoundsException();
+                }
+
+            } while (success) ;
+            return false;
+        }
+
 
     /**
      * This method is the main page (main menu).

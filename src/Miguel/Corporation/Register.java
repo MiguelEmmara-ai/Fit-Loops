@@ -14,31 +14,35 @@ public class Register {
     private float height;
     private String userName;
     private String passWords;
+    private GoalType goalType;
 
     public Register() {
     }
 
     public Register(String firstName, String lastName, LocalDate dateOfBirth, float weight, float height,
-                    String userName, String passWords) {
+                    GoalType goalType, String userName, String passWords) {
         setFirstName(firstName);
         setLastName(lastName);
         setDateOfBirth(dateOfBirth);
         setWeight(weight);
         setHeight(height);
+        setGoalType(goalType);
         setUserName(userName);
         setPassWords(passWords);
     }
 
     public Register(String firstName, String lastName, String dateOfBirth, float weight, float height,
-                    String userName, String passWords) {
+                    GoalType goalType, String userName, String passWords) {
         setFirstName(firstName);
         setLastName(lastName);
         this.setDateOfBirth(dateOfBirth);
         setWeight(weight);
         setHeight(height);
+        setGoalType(goalType);
         setUserName(userName);
         setPassWords(passWords);
     }
+
 
     public String getFirstName() {
         return firstName;
@@ -100,14 +104,22 @@ public class Register {
         this.dateOfBirth = LocalDate.parse(dateOfBirth, DateTimeFormatter.ofPattern("dd/MM/yyy"));
     }
 
+    public GoalType getGoalType() {
+        return goalType;
+    }
+
+    public void setGoalType(GoalType goalType) {
+        this.goalType = goalType;
+    }
+
     public void createUserAccountInformation() throws IOException {
         // Accept a string
         String str = "First Name: " + getFirstName() + "\nLast Name: " + getLastName() + "\nDate Of Birth: "
-                + getDateOfBirth() + "\nWeight: " + getWeight() + "\nHeight: " + getHeight() + " CM" + "\nUserName: "
+                + getDateOfBirth() + "\nWeight: " + getWeight() + "\nHeight: " + getHeight() + " CM" + "\nGoal Type: " + getGoalType() + "\nUserName: "
                 + getUserName() + "\nPassword: " + getPassWords();
 
         // attach a file to FileWriter
-        FileWriter fw = new FileWriter(getUserName() + " - Account Information .txt");
+        FileWriter fw = new FileWriter(getUserName() + " - Account Information.txt");
 
         // read character wise from string and write
         // into FileWriter

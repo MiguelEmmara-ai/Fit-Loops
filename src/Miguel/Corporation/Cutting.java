@@ -27,6 +27,7 @@ public class Cutting extends MacrosDatabases {
             String dateOfBirth = scanner.nextLine();
             String weight = scanner.nextLine();
             String height = scanner.nextLine();
+            String goalType = scanner.nextLine();
             String userName = scanner.nextLine();
             String passWords = scanner.nextLine();
 
@@ -47,7 +48,7 @@ public class Cutting extends MacrosDatabases {
             //close the file
             fw.close();
 
-            DataBaseUser newUser = new DataBaseUser(firstName, lastName, dateOfBirth, weight, height, userName, passWords);
+            DataBaseUser newUser = new DataBaseUser(firstName, lastName, dateOfBirth, weight, height, goalType, userName, passWords);
             dataBaseUsers = addUserData(dataBaseUsers, newUser);
         }
 

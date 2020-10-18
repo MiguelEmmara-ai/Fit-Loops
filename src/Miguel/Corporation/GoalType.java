@@ -1,7 +1,9 @@
 package Miguel.Corporation;
 
 public enum GoalType {
-    MAINTENANCE, CUTTING, BULKING;
+    MAINTENANCE,
+    CUTTING,
+    BULKING;
 
     GoalType() {
     }
