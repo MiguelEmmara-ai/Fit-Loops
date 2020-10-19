@@ -2,7 +2,7 @@
 Fit Loops is all in one Fitness Applications to help and keep tracks diet and exercise.
   
 # Key Features
-1. Create your own account.
+1. Create your own account and save all your personal information into .txt file (Password Will Be Displayed As Encrypted Text). 
 2. Calculate your macros depending on your activity level to best suit you.
 3. Keep track all your exercises and personal records.
 4. Ability to export file with all your details.
@@ -22,3 +22,4 @@ This App is based on Menu Driven Interface. Depending on your choice, It will di
 
 # License
 Copyright 2020. Code released under the MIT license.
+Written With IntelliJ IDE (JDK 14)
