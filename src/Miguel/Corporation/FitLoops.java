@@ -13,7 +13,7 @@ import java.util.Scanner;
  * @version 1.0
  * @since   10/10/2020
  */
-public class Main extends Application {
+public class FitLoops extends Application {
     private static final Scanner scanner = new Scanner(System.in);
 
     /**

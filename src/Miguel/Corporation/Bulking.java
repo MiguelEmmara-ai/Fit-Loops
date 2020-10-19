@@ -47,7 +47,7 @@ public class Bulking extends MacrosDatabases {
             String height = scanner.nextLine();
             String goalType = scanner.nextLine();
             String userName = scanner.nextLine();
-            String passWords = scanner.nextLine();
+            String passWord = scanner.nextLine();
 
             // Accept a string
             String str = "\t\t\t### Lean Bulking Macros ###" + "\nName: " + getUserName() + "\n"  + height + "\n"
@@ -67,7 +67,7 @@ public class Bulking extends MacrosDatabases {
             //close the file
             fw.close();
 
-            DataBaseUser newUser = new DataBaseUser(firstName, lastName, dateOfBirth, weight, height, goalType, userName, passWords);
+            DataBaseUser newUser = new DataBaseUser(firstName, lastName, dateOfBirth, weight, height, goalType, userName, passWord);
             dataBaseUsers = addUserData(dataBaseUsers, newUser);
         }
     }

@@ -48,7 +48,7 @@ public class Login {
 
     /**
      * This method is verifyLogin user
-     * It will check if the username and passwords entered by user is valid and exist in the members.txt
+     * It will check if the username and password entered by user is valid and exist in the members.txt
      * @param filepath : members.txt.
      * @author  Miguel Emmara - 1802146
      */
