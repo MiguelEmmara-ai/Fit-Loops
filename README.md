@@ -1,4 +1,4 @@
-# Fit-Loops
+# Fit Loops
 Fit Loops is all in one Fitness Applications to help and keep tracks diet and exercise.
   
 # Key Features
