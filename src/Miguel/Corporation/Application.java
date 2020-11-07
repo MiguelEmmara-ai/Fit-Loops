@@ -124,7 +124,7 @@ public class Application {
                                     System.out.println("\nAccount Created Successfully!");
 
                                     System.out.println("Username: " + userName);
-                                    System.out.println("Password: YourPassword!");
+                                    System.out.println("Password: " + secretPassword.toString() + " (Encrypted!)");
                                 }
                                 case 2 -> {
                                     Register register = new Register(firstName, lastName, dateOfBirth, weight, height, GoalType.CUTTING, userName, secretPassword.toString());
@@ -133,7 +133,7 @@ public class Application {
                                     System.out.println("\nAccount Created Successfully!");
 
                                     System.out.println("Username: " + userName);
-                                    System.out.println("Password: YourPassword!");
+                                    System.out.println("Password: " + secretPassword.toString() + " (Encrypted!)");
                                 }
                                 case 3 -> {
                                     Register register = new Register(firstName, lastName, dateOfBirth, weight, height, GoalType.BULKING, userName, secretPassword.toString());
@@ -256,6 +256,7 @@ public class Application {
                 }
                 case 11 -> {
                     mainMenu(scanner);
+                    success = false;
                 }
                 case 12 -> {
                     System.out.println("\nSee ya!");
