@@ -16,7 +16,7 @@ public class DataBaseUser {
     private String height;
     private String goalType;
     private String userName;
-    private String passWords;
+    private String passWord;
 
     /**
      * Default Constructor
@@ -27,11 +27,11 @@ public class DataBaseUser {
      * @param height : Get height From user.
      * @param goalType : Get goalType From user.
      * @param userName : Get userName From user.
-     * @param passWords : Get passWords From user.
+     * @param passWord : Get passWord From user.
      * @author  Miguel Emmara - 1802146
      */
     public DataBaseUser(String firstName, String lastName, String dateOfBirth, String weight, String height,
-                        String goalType, String userName, String passWords) {
+                        String goalType, String userName, String passWord) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -39,12 +39,12 @@ public class DataBaseUser {
         this.height = height;
         this.goalType = goalType;
         this.userName = userName;
-        this.passWords = passWords;
+        this.passWord = passWord;
     }
 
     @Override
     public String toString() {
         return firstName + "\n" + lastName + "\n" + dateOfBirth + "\n" + weight + "\n" + height + "\n" + goalType
-                + "\n" + userName + "\n" + passWords + "\n";
+                + "\n" + userName + "\n" + passWord + "\n";
     }
 }

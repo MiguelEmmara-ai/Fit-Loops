@@ -21,7 +21,7 @@ public class Register {
     private float weight;
     private float height;
     private String userName;
-    private String passWords;
+    private String passWord;
     private GoalType goalType;
 
     /**
@@ -29,7 +29,7 @@ public class Register {
      * @author  Miguel Emmara - 1802146
      */
     public Register(String firstName, String lastName, LocalDate dateOfBirth, float weight, float height,
-                    GoalType goalType, String userName, String passWords) {
+                    GoalType goalType, String userName, String passWord) {
         setFirstName(firstName);
         setLastName(lastName);
         setDateOfBirth(dateOfBirth);
@@ -37,7 +37,7 @@ public class Register {
         setHeight(height);
         setGoalType(goalType);
         setUserName(userName);
-        setPassWords(passWords);
+        setPassWord(passWord);
     }
 
     /**
@@ -45,7 +45,7 @@ public class Register {
      * @author  Miguel Emmara - 1802146
      */
     public Register(String firstName, String lastName, String dateOfBirth, float weight, float height,
-                    GoalType goalType, String userName, String passWords) {
+                    GoalType goalType, String userName, String passWord) {
         setFirstName(firstName);
         setLastName(lastName);
         this.setDateOfBirth(dateOfBirth);
@@ -53,7 +53,7 @@ public class Register {
         setHeight(height);
         setGoalType(goalType);
         setUserName(userName);
-        setPassWords(passWords);
+        setPassWord(passWord);
     }
 
     // Getter and setter methods for Object's instance data.
@@ -106,12 +106,12 @@ public class Register {
         this.userName = (userName.trim().isEmpty()? "UNKNOWN":userName);
     }
     //------------------------------------------------------------------
-    public String getPassWords() {
-        return passWords;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public void setPassWords(String passWords) {
-        this.passWords = (passWords.trim().isEmpty()? "UNKNOWN":passWords);
+    public void setPassWord(String passWord) {
+        this.passWord = (passWord.trim().isEmpty()? "UNKNOWN": passWord);
     }
     //------------------------------------------------------------------
     public void setDateOfBirth(String dateOfBirth) {
@@ -136,7 +136,7 @@ public class Register {
         // Accept a string
         String str = "First Name: " + getFirstName() + "\nLast Name: " + getLastName() + "\nDate Of Birth: "
                 + getDateOfBirth() + "\nWeight: " + getWeight() + "\nHeight: " + getHeight() + " CM" + "\nGoal Type: " + getGoalType() + "\nUserName: "
-                + getUserName() + "\nPassword: " + getPassWords();
+                + getUserName() + "\nPassword: " + getPassWord();
 
         // attach a file to FileWriter
         FileWriter fw = new FileWriter(getUserName() + " - Account Information.txt");
