@@ -45,6 +45,7 @@ public class Application {
                 // Using file pointer creating the file.
                 File file = new File(filepath);
                 if (!file.exists()) {
+
                     // Create a new file if not exists.
                     file.createNewFile();
                 }
@@ -55,7 +56,7 @@ public class Application {
 
                     System.out.print("\tPassword: ");
                     passWord = scanner.nextLine();
-                    Miguel.Corporation.passWord secretPassword = new passWord(passWord,false);
+                    PassWord secretPassword = new PassWord(passWord,false);
                     String theKey = userName + "SpecialKey123";
                     secretPassword.encrypt(theKey.toCharArray());
 
@@ -111,7 +112,7 @@ public class Application {
 
                             System.out.print("Password: ");
                             passWord = scanner.nextLine();
-                            Miguel.Corporation.passWord secretPassword = new passWord(passWord,false);
+                            PassWord secretPassword = new PassWord(passWord,false);
                             String theKey = userName + "SpecialKey123";
                             secretPassword.encrypt(theKey.toCharArray());
 

@@ -8,7 +8,7 @@ package Miguel.Corporation;
  * @version 1.0
  * @since   10/10/2020
  */
-public class passWord implements Encryptable{
+public class PassWord implements Encryptable{
     public String message;
     public boolean isEncrypted;
 
@@ -18,7 +18,7 @@ public class passWord implements Encryptable{
      * @param encrypted : Get false.
      * @author  Miguel Emmara - 1802146
      */
-    public passWord(String passWord, boolean encrypted) {
+    public PassWord(String passWord, boolean encrypted) {
         this.message = passWord;
         isEncrypted = encrypted;
     }
