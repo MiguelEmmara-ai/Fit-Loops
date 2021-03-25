@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  * <h1>Register Class</h1>
  * Store information that needs for user to register
  *
- * @author  Miguel Emmara - 1802146
+ * @author  Miguel Emmara - 18022146
  * @version 1.0
  * @since   10/10/2020
  */
@@ -26,23 +26,7 @@ public class Register {
 
     /**
      * 8-Parameters Constructor
-     * @author  Miguel Emmara - 1802146
-     */
-    public Register(String firstName, String lastName, LocalDate dateOfBirth, float weight, float height,
-                    GoalType goalType, String userName, String passWord) {
-        setFirstName(firstName);
-        setLastName(lastName);
-        setDateOfBirth(dateOfBirth);
-        setWeight(weight);
-        setHeight(height);
-        setGoalType(goalType);
-        setUserName(userName);
-        setPassWord(passWord);
-    }
-
-    /**
-     * 8-Parameters Constructor
-     * @author  Miguel Emmara - 1802146
+     * @author  Miguel Emmara - 18022146
      */
     public Register(String firstName, String lastName, String dateOfBirth, float weight, float height,
                     GoalType goalType, String userName, String passWord) {
@@ -130,7 +114,7 @@ public class Register {
      * This method is A Polymorphism Method From MacroDatabases Class
      * It will get user information and have an options to save it a txt file
      * @return none
-     * @author  Miguel Emmara - 1802146
+     * @author  Miguel Emmara - 18022146
      */
     public void createUserAccountInformation() throws IOException {
         // Accept a string
@@ -155,7 +139,7 @@ public class Register {
      * @param filePath : get filePath from user.
      * @param string : get string Information from user.
      * @return none
-     * @author  Miguel Emmara - 1802146
+     * @author  Miguel Emmara - 18022146
      */
     public void addNewMembers(String filePath, String string) {
         try {

@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  * <h1>Application Class</h1>
  * This Class is the starting point to implement any other class
  *
- * @author  Miguel Emmara - 1802146
+ * @author  Miguel Emmara - 18022146
  * @version 1.0
  * @since   10/10/2020
  */
