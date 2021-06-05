@@ -5,9 +5,9 @@ package Miguel.Corporation;
  * This is an enumeration class that has values that
  * describes the goal type for the user.
  *
- * @author  Miguel Emmara - 1802146
+ * @author Miguel Emmara - 18021466
  * @version 1.0
- * @since   10/10/2020
+ * @since 10/10/2020
  */
 public enum GoalType {
     MAINTENANCE,

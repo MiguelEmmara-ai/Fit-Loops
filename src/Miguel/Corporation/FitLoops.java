@@ -9,18 +9,19 @@ import java.util.Scanner;
  * Fit Loops is all in one Fitness Applications to
  * help and keep tracks diet and exercise.
  *
- * @author  Miguel Emmara - 1802146
+ * @author Miguel Emmara - 18021466
  * @version 1.0
- * @since   10/10/2020
+ * @since 10/10/2020
  */
 public class FitLoops extends Application {
     private static final Scanner scanner = new Scanner(System.in);
 
     /**
      * This is the main method which makes use Application Class To Start The Program.
+     *
      * @param args Unused.
      * @return Nothing.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     public static void main(String[] args) {
         Application application = new Application();
@@ -45,7 +46,7 @@ public class FitLoops extends Application {
             }
         }
 
-       boolean quit2 = true;
+        boolean quit2 = true;
         while (quit2) {
             try {
                 quit2 = application.mainMenu(scanner);

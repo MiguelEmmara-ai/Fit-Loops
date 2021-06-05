@@ -10,29 +10,46 @@ import java.util.Scanner;
  * <h1>Maintenance Class</h1>
  * This Class is for Bulking criteria, it will calculate and give result only for bulking using Bulking Algorithm
  *
- * @author  Miguel Emmara - 1802146
+ * @author Miguel Emmara - 18021466
  * @version 1.0
- * @since   10/10/2020
+ * @since 10/10/2020
  */
 public class Maintenance extends MacrosDatabases {
+    DataBaseUser[] dataBaseUsers = new DataBaseUser[0];
     private float calories;
     private boolean saveMacros;
-    DataBaseUser[] dataBaseUsers = new DataBaseUser[0];
 
     /**
      * 2-Parameters Constructor
+     *
      * @param userName : Get userName From User.
      * @param password : Get PassWord From user.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     public Maintenance(String userName, String password) {
         super(userName, password);
     }
 
     /**
+     * This method is to addUserData to DataBaseUser[]
+     *
+     * @param DataBaseUser[] : Array of DataBaseUser.
+     * @return newUserData
+     * @author Miguel Emmara - 18021466
+     */
+    private static DataBaseUser[] addUserData(DataBaseUser[] products, DataBaseUser productToAdd) {
+        DataBaseUser[] newUserData = new DataBaseUser[products.length + 1];
+        System.arraycopy(products, 0, newUserData, 0, products.length);
+        newUserData[newUserData.length - 1] = productToAdd;
+
+        return newUserData;
+    }
+
+    /**
      * This method is to Save Macros to a txt file
+     *
      * @param scanner : Scanner to grab user input.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     public void saveMacrosMethod(Scanner scanner) throws IOException {
         scanner = new Scanner(new File(getUserName() + " - Account Information.txt"));
@@ -49,7 +66,7 @@ public class Maintenance extends MacrosDatabases {
             String passWord = scanner.nextLine();
 
             // Accept a string
-            String str = "\t\t\t### Maintenance Macros ###" + "\nName: " + getUserName() + "\n"  + height + "\n"
+            String str = "\t\t\t### Maintenance Macros ###" + "\nName: " + getUserName() + "\n" + height + "\n"
                     + dateOfBirth + "\nWeight: " + getWeight() + " KG" + "\n\nCalories: "
                     + String.format("%.2f", getCalories()) + "\nProtein: " + String.format("%.2f", getProteins())
                     + " Grams of Protein" + "\nFats: " + String.format("%.2f", getFats())
@@ -71,63 +88,57 @@ public class Maintenance extends MacrosDatabases {
         }
     }
 
-    /**
-     * This method is to addUserData to DataBaseUser[]
-     * @param DataBaseUser[] : Array of DataBaseUser.
-     * @return newUserData
-     * @author  Miguel Emmara - 1802146
-     */
-    private static DataBaseUser[] addUserData(DataBaseUser[] products, DataBaseUser productToAdd) {
-        DataBaseUser[] newUserData = new DataBaseUser[products.length + 1];
-        System.arraycopy(products, 0, newUserData, 0, products.length);
-        newUserData[newUserData.length - 1] = productToAdd;
-
-        return newUserData;
-    }
-
     // Overridden methods from the Abstract class.
     //############################################
     @Override
     public float getCalories() {
         return calories;
     }
+
     //############################################
     @Override
     public void setCalories(float calories) {
         this.calories = calories;
     }
+
     //############################################
     @Override
     public boolean isSaveMacros() {
         return saveMacros;
     }
+
     //############################################
     @Override
     public void setSaveMacros(boolean saveMacros) {
         this.saveMacros = saveMacros;
     }
+
     //############################################
     @Override
     public float getActivityMultiplier() {
         return super.getActivityMultiplier();
     }
+
     //############################################
     @Override
     public void setActivityMultiplier(float activityMultiplier) {
         super.setActivityMultiplier(activityMultiplier);
     }
+
     //############################################
     @Override
     public void activityMultiplier(Scanner scanner) {
         super.activityMultiplier(scanner);
     }
     //############################################
+
     /**
      * This method is A Polymorphism Method From MacroDatabases Class
      * It will get user information and have an options to save it a txt file
+     *
      * @param scanner : Scanner to grab user input.
      * @return none
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     @Override
     public void getInput(Scanner scanner) {
@@ -145,19 +156,21 @@ public class Maintenance extends MacrosDatabases {
                 scanner.nextLine();
 
                 switch (answer) {
-                    case 1 -> {
+                    case 1 : {
                         setSaveMacros(true);
                         if (isSaveMacros()) {
                             saveMacrosMethod(scanner);
                             System.out.println("Macros Saves as " + getUserName() + " - Maintenance Macros.txt");
                         }
                         success = true;
+                        break;
                     }
-                    case 2 -> {
+                    case 2 : {
                         setSaveMacros(false);
                         success = true;
+                        break;
                     }
-                    default -> throw new IndexOutOfBoundsException();
+                    default : throw new IndexOutOfBoundsException();
                 }
 
             } catch (IndexOutOfBoundsException e) {
@@ -173,12 +186,14 @@ public class Maintenance extends MacrosDatabases {
         }
     }
     //############################################
+
     /**
      * This method is A Polymorphism Method From MacroDatabases Class
      * It use the Algorithm To Calculate Calories Intake For Maintenance
      * Weight * (22(For KG)) or (10(For Pound)) * ActivityMultiplier
+     *
      * @return none.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     @Override
     public void calculateCalories() {
@@ -194,12 +209,14 @@ public class Maintenance extends MacrosDatabases {
         }
     }
     //############################################
+
     /**
      * This method is A Polymorphism Method From MacroDatabases Class
      * It use the Algorithm To Calculate Proteins Intake For Maintenance
      * Weight * (2.2(For KG)) or (1(For Pound))
+     *
      * @return none.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     @Override
     public void calculateProtein() {
@@ -215,12 +232,14 @@ public class Maintenance extends MacrosDatabases {
         }
     }
     //############################################
+
     /**
      * This method is A Polymorphism Method From MacroDatabases Class
      * It use the Algorithm To Calculate Fats Intake For Maintenance
      * Total calories *  0.25
+     *
      * @return none.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     @Override
     public void calculateFat() {
@@ -238,14 +257,16 @@ public class Maintenance extends MacrosDatabases {
         }
     }
     //############################################
+
     /**
      * This method is A Polymorphism Method From MacroDatabases Class
      * It use the Algorithm To Calculate Carbs Intake For Maintenance
      * We have to convert our fats and protein into
      * calories, add them together, then subtract them from our
      * maintenance to find how much carbohydrates we are getting
+     *
      * @return none.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     @Override
     public void calculateCarbs() {
@@ -257,13 +278,13 @@ public class Maintenance extends MacrosDatabases {
             String strDouble = String.format("%.0f", getCarbs());
             System.out.println("Carbs: " + strDouble + " Grams of Carbs");
 
-        } else if (isPound()){
+        } else if (isPound()) {
             float tempProteinInCal = this.getProteins() * 4;
             float tempFatInCal = this.getFats() * 9;
             float tempTotalProAndFat = tempProteinInCal + tempFatInCal;
             this.setCarbs((this.getCalories() - tempTotalProAndFat) / 4);
             String strDouble = String.format("%.0f", getCarbs());
-            System.out.println("Carbs: " + strDouble  + " Grams of Carbs");
+            System.out.println("Carbs: " + strDouble + " Grams of Carbs");
         }
     }
 

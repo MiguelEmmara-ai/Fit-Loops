@@ -8,20 +8,21 @@ import java.util.*;
  * <h1>DieLogs Class</h1>
  * This Class integrates for 2 functionality, to read and create a daily logs
  *
- * @author  Miguel Emmara - 1802146
+ * @author Miguel Emmara - 18021466
  * @version 1.0
- * @since   10/10/2020
+ * @since 10/10/2020
  */
 public class DietLogs {
     private final String userName;
     private List<List<String>> rows;
-    private List<String> list;
-    private LocalDate now;
+    private final List<String> list;
+    private final LocalDate now;
 
     /**
      * Default Constructor
+     *
      * @param userName : Get userName From User.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     public DietLogs(String userName) {
         this.userName = userName;
@@ -38,9 +39,10 @@ public class DietLogs {
 
     /**
      * This will get user information and will save it a csv file
+     *
      * @param scanner : Scanner to grab user input.
      * @return none
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     public void getInput(Scanner scanner) throws IOException {
         System.out.print("\nCalories: ");
@@ -90,9 +92,10 @@ public class DietLogs {
 
     /**
      * This will display File Names Available (csv) for user to read it in the console
+     *
      * @param scanner : Scanner to grab user input.
      * @return none
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     public void readDietLog(Scanner scanner) throws IOException {
         File directoryPath = new File(System.getProperty("user.dir"));

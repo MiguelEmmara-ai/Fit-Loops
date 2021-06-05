@@ -11,20 +11,21 @@ import java.util.Scanner;
  * <h1>Exercise Class</h1>
  * This Class integrates for 2 functionality, to read and create a daily exercises logs
  *
- * @author  Miguel Emmara - 1802146
+ * @author Miguel Emmara - 18021466
  * @version 1.0
- * @since   10/10/2020
+ * @since 10/10/2020
  */
 public class ExerciseLogs {
-    private int numberExercises;
     private final String userName;
     private final ArrayList<String> exerciseList;
-    private LocalDate now;
+    private int numberExercises;
+    private final LocalDate now;
 
     /**
      * Default Constructor
+     *
      * @param userName : Get userName From User.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     public ExerciseLogs(String userName) {
         this.userName = userName;
@@ -49,9 +50,10 @@ public class ExerciseLogs {
 
     /**
      * This will get user information and will save it a csv file
+     *
      * @param scanner : Scanner to grab user input.
      * @return none
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     public void getInput(Scanner scanner) throws IOException {
 
@@ -94,9 +96,10 @@ public class ExerciseLogs {
 
     /**
      * This will display File Names Available (csv) for user to read it in the console
+     *
      * @param scanner : Scanner to grab user input.
      * @return none
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     public void readExerciseLog(Scanner scanner) throws IOException {
         File directoryPath = new File(System.getProperty("user.dir"));

@@ -4,19 +4,20 @@ package Miguel.Corporation;
  * <h1>PassWord Class</h1>
  * This class works as a encryptor for user password to store in the database
  *
- * @author  Miguel Emmara - 1802146
+ * @author Miguel Emmara - 18021466
  * @version 1.0
- * @since   10/10/2020
+ * @since 10/10/2020
  */
-public class PassWord implements Encryptable{
+public class PassWord implements Encryptable {
     public String message;
     public boolean isEncrypted;
 
     /**
      * 2-Parameters Constructor
-     * @param passWord : Get passWord From User.
+     *
+     * @param passWord  : Get passWord From User.
      * @param encrypted : Get false.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     public PassWord(String passWord, boolean encrypted) {
         this.message = passWord;
@@ -25,8 +26,9 @@ public class PassWord implements Encryptable{
 
     /**
      * Encrypt The Password
+     *
      * @param key : SecretKey.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     @Override
     public void encrypt(char[] key) {
@@ -53,8 +55,9 @@ public class PassWord implements Encryptable{
 
     /**
      * Decrypt The Password
+     *
      * @param key : SecretKey.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     @Override
     public void decrypt(char[] key) {

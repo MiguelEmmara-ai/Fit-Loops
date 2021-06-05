@@ -7,9 +7,9 @@ import java.util.Scanner;
  * <h1>Login Class</h1>
  * This class will give the ability to login in the welcomePage(); inside Application Class
  *
- * @author  Miguel Emmara - 1802146
+ * @author Miguel Emmara - 18021466
  * @version 1.0
- * @since   10/10/2020
+ * @since 10/10/2020
  */
 public class Login {
     private String userName;
@@ -17,9 +17,10 @@ public class Login {
 
     /**
      * 2-Parameters Constructor
+     *
      * @param userName : Get userName From User.
      * @param password : Get PassWord From user.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     public Login(String userName, String password) {
         setUserName(userName);
@@ -36,6 +37,7 @@ public class Login {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
     //------------------------------------------------------------------
     public String getPassword() {
         return password;
@@ -49,8 +51,9 @@ public class Login {
     /**
      * This method is verifyLogin user
      * It will check if the username and password entered by user is valid and exist in the members.txt
+     *
      * @param filepath : members.txt.
-     * @author  Miguel Emmara - 1802146
+     * @author Miguel Emmara - 18021466
      */
     public boolean verifyLogin(String filepath) {
         boolean found = false;

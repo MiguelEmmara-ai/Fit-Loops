@@ -10,9 +10,9 @@ import java.time.format.DateTimeFormatter;
  * <h1>Register Class</h1>
  * Store information that needs for user to register
  *
- * @author  Miguel Emmara - 18022146
+ * @author Miguel Emmara - 18022146
  * @version 1.0
- * @since   10/10/2020
+ * @since 10/10/2020
  */
 public class Register {
     private String firstName;
@@ -26,7 +26,8 @@ public class Register {
 
     /**
      * 8-Parameters Constructor
-     * @author  Miguel Emmara - 18022146
+     *
+     * @author Miguel Emmara - 18022146
      */
     public Register(String firstName, String lastName, String dateOfBirth, float weight, float height,
                     GoalType goalType, String userName, String passWord) {
@@ -47,8 +48,9 @@ public class Register {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = (firstName.trim().isEmpty()? "UNKNOWN":firstName);
+        this.firstName = (firstName.trim().isEmpty() ? "UNKNOWN" : firstName);
     }
+
     //------------------------------------------------------------------
     public String getLastName() {
         return lastName;
@@ -57,6 +59,7 @@ public class Register {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     //------------------------------------------------------------------
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
@@ -65,6 +68,12 @@ public class Register {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
+    //------------------------------------------------------------------
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = LocalDate.parse(dateOfBirth, DateTimeFormatter.ofPattern("dd/MM/yyy"));
+    }
+
     //------------------------------------------------------------------
     public float getWeight() {
         return weight;
@@ -73,6 +82,7 @@ public class Register {
     public void setWeight(float weight) {
         this.weight = weight;
     }
+
     //------------------------------------------------------------------
     public float getHeight() {
         return height;
@@ -81,26 +91,25 @@ public class Register {
     public void setHeight(float height) {
         this.height = height;
     }
+
     //------------------------------------------------------------------
     public String getUserName() {
         return userName;
     }
 
     public void setUserName(String userName) {
-        this.userName = (userName.trim().isEmpty()? "UNKNOWN":userName);
+        this.userName = (userName.trim().isEmpty() ? "UNKNOWN" : userName);
     }
+
     //------------------------------------------------------------------
     public String getPassWord() {
         return passWord;
     }
 
     public void setPassWord(String passWord) {
-        this.passWord = (passWord.trim().isEmpty()? "UNKNOWN": passWord);
+        this.passWord = (passWord.trim().isEmpty() ? "UNKNOWN" : passWord);
     }
-    //------------------------------------------------------------------
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = LocalDate.parse(dateOfBirth, DateTimeFormatter.ofPattern("dd/MM/yyy"));
-    }
+
     //------------------------------------------------------------------
     public GoalType getGoalType() {
         return goalType;
@@ -110,11 +119,13 @@ public class Register {
         this.goalType = goalType;
     }
     //------------------------------------------------------------------
+
     /**
      * This method is A Polymorphism Method From MacroDatabases Class
      * It will get user information and have an options to save it a txt file
+     *
      * @return none
-     * @author  Miguel Emmara - 18022146
+     * @author Miguel Emmara - 18022146
      */
     public void createUserAccountInformation() throws IOException {
         // Accept a string
@@ -136,10 +147,11 @@ public class Register {
     /**
      * This method is A Polymorphism Method From MacroDatabases Class
      * It will get user information and have an options to save it a txt file
+     *
      * @param filePath : get filePath from user.
-     * @param string : get string Information from user.
+     * @param string   : get string Information from user.
      * @return none
-     * @author  Miguel Emmara - 18022146
+     * @author Miguel Emmara - 18022146
      */
     public void addNewMembers(String filePath, String string) {
         try {
@@ -147,8 +159,7 @@ public class Register {
             BufferedWriter out = new BufferedWriter(new FileWriter(filePath, true));
             out.write(string);
             out.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("exception occurred" + e);
         }
     }
